@@ -21,16 +21,20 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 #-- General additional installations
 #pacman -S --noconfirm sudo
-# make changes in /etc/sudoers
+# >> make changes in /etc/sudoers | copy sudoers file
 #pacman -S --noconfirm base-devel
+#pacman -S --noconfirm xorg xterm xorg-xinit
+#pacman -S --noconfirm slim
+# >> copy slim-settings
+#pacman -S --noconfirm i3 dmenu
+# >> remember to copy .i3/config later on
 #pacman -S --noconfirm git
 #pacman -S --noconfirm vim-python3
-#pacman -S --noconfirm vimprobable2
-# install yaourt
-# get init-scripts
+# >> install yaourt
+# >> get init-scripts
 
 #-- Set root-password
-echo "Set root-password:"
+echo -e "\\e[1;31m>> Set root-password:\\e[;m"
 passwd
 
 #-- Set new (normal) user
