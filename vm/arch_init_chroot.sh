@@ -30,7 +30,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # >> remember to copy .i3/config later on
 #pacman -S --noconfirm git
 #pacman -S --noconfirm vim-python3
-# >> install yaourt
+# do this here or afterwards?!
+#bash <(curl aur.sh) -si --noconfirm package-query
+#bash <(curl aur.sh) -si --noconfirm yaourt
+#rm -rf package-query yaourt
 # >> get init-scripts
 
 #-- Set root-password
