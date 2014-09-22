@@ -15,7 +15,8 @@ mkfs.ext4 -L archlinux /dev/sda1
 mount /dev/sda1 /mnt
 pacstrap /mnt base
 genfstab -p /mnt >> /mnt/etc/fstab
-arch-chroot /mnt arch_init_chroot.sh
+mv arch_init_chroot.sh /mnt/root/arch_init_chroot.sh
+arch-chroot /mnt ./root/arch_init_chroot.sh
 
 #-- Unmounting and restarting
 umount /mnt
