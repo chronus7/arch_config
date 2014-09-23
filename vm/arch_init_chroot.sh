@@ -19,32 +19,15 @@ pacman -S --noconfirm grub
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
-#-- General additional installations
-#pacman -S --noconfirm sudo
-# >> make changes in /etc/sudoers | copy sudoers file
-#pacman -S --noconfirm base-devel
-#pacman -S --noconfirm xorg xterm xorg-xinit
-#pacman -S --noconfirm slim
-# >> copy slim-settings
-#pacman -S --noconfirm i3 dmenu
-# >> remember to copy .i3/config later on
-#pacman -S --noconfirm git
-#pacman -S --noconfirm vim-python3
-# do this here or afterwards?!
-#bash <(curl aur.sh) -si --noconfirm package-query
-#bash <(curl aur.sh) -si --noconfirm yaourt
-#rm -rf package-query yaourt
-# >> get init-scripts
+#-- Get installation script
+curl "https://raw.githubusercontent/DaveAtGit/arch_config/master/vm/root_setup.sh" > /root/setup.sh
+chmod u+x /root/setup.sh
 
 #-- Set root-password
 echo -e "\\e[1;31m>> Set root-password:\\e[;m"
 passwd
 
-#-- Set new (normal) user
-#echo "Create user:"
-#useradd -m -G wheel -s /bin/bash user
-
 #-- Internet connection for next time?!
-#systemctl enable dhcpcd
+systemctl enable dhcpcd
 
 exit
