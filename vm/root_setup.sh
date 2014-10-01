@@ -2,7 +2,7 @@
 #-- The setup, done by root after rebooting
 
 install="pacman -S --noconfirm"
-aurinst="bash <(curl aur.sh) -si --noconfirm"
+aurinst="bash <(curl aur.sh) -si --noconfirm" #TODO seems not to work!
 
 $install sudo
 nano /etc/sudoers
@@ -33,7 +33,7 @@ passwd -d $user
 #-- Clone repo and initialize
 su $user <<CMD
 cd /home/$user
-git clone https://github.com/DaveAtGit/arch_config/master/
+git clone https://github.com/DaveAtGit/arch_config.git
 . /home/$user/arch_config/setup.sh
 CMD
 
