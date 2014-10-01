@@ -20,7 +20,7 @@ grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #-- Get installation script
-curl "https://raw.githubusercontent/DaveAtGit/arch_config/master/vm/root_setup.sh" > /root/setup.sh
+curl "https://raw.githubusercontent.com/DaveAtGit/arch_config/master/vm/root_setup.sh" > /root/setup.sh
 chmod u+x /root/setup.sh
 
 #-- Set root-password
