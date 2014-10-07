@@ -1,9 +1,9 @@
-~/arch_config/.bashrc ~/.bashrc
-~/.bashrc /root/.bashrc sudo
-~/arch_config/.vimrc ~/.vimrc
-~/.vimrc /root/.vimrc sudo
-~/arch_config/.vim ~/.vim
-~/.vim /root/.vim sudo
-~/arch_config/.i3 ~/.i3
-~/arch_config/.Xresources ~/.Xresources
-~/arch_config/.xinitrc ~/.xinitrc
+~/arch_config/.bashrc;~/.bashrc
+~/.bashrc;/root/.bashrc;sudo
+~/arch_config/.vimrc;~/.vimrc
+~/.vimrc;/root/.vimrc;sudo
+~/arch_config/.vim;~/.vim
+~/.vim;/root/.vim;sudo
+~/arch_config/.i3;~/.i3
+~/arch_config/.Xresources;~/.Xresources
+~/arch_config/.xinitrc;~/.xinitrc
