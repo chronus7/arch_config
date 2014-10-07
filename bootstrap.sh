@@ -7,5 +7,5 @@ while read line
 do
 		IFS=';'
 		arr=($line)
-		echo "${arr[2]} ln -sf \"${arr[0]}\" \"${arr[1]}\""
+		${arr[2]} ln -sf "${arr[0]}" "${arr[1]}"
 done < links
