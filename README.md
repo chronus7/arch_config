@@ -11,11 +11,11 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
 
 - [ ] General configs
   - [ ] .config/
-  - [ ] .i3/config
-  - [ ] .bashrc
-  - [ ] .vimrc
-  - [ ] .vim/
-  - [ ] .Xresources
-  - [ ] .xinitrc
-- [ ] automated linking (let's call it bootstrapping :smile:)
-- [ ] automated VM-setup
+  - [x] .i3/
+  - [x] .bashrc
+  - [x] .vimrc
+  - [x] .vim/
+  - [x] .Xresources
+  - [x] .xinitrc
+- [x] automated linking (let's call it bootstrapping)
+- [x] automated VM-setup
