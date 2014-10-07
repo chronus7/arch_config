@@ -1,1 +1,11 @@
-/home/eled/.Xresources
+Xft*antialias: true
+Xft*autohint: true
+XTerm*background: #121212
+XTerm*foreground: #dedede
+XTerm*cursorColor: #cdcdcd
+XTerm*scrollBar: false
+XTerm*rightScrollBar: false
+XTerm*faceName: DejaVu Sans Mono For Powerline
+XTerm*faceSize: 9
+XTerm*toolBar: off
+XTerm*transparent: true

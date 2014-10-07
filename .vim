@@ -1,1 +1,0 @@
-/home/eled/.vim
