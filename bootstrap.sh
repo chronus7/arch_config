@@ -7,5 +7,5 @@ while read line
 do
 		IFS=';'
 		arr=($line)
-		${arr[2]} ln -sf "${arr[0]}" "${arr[1]}"
+		${arr[2]} ln -sf "${arr[0]/\~/$HOME}" "${arr[1]/\~/$HOME}"
 done < links
