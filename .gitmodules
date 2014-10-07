@@ -1,0 +1,20 @@
+[submodule "Vundle.vim"]
+		path = ".vim/bundle/Vundle.vim"
+		url = "git://github.com/gmarik/Vundle.vim"
+
+[submodule "python-mode"]
+		path = ".vim/bundle/python-mode"
+		url = "git://github.com/klen/python-mode"
+
+[submodule "haskellmode-vim"]
+		path = ".vim/bundle/haskellmode-vim"
+		url = "git://github.com/lukerandall/haskellmode-vim"
+
+[submodule "c.vim"]
+		path = ".vim/bundle/c.vim"
+		url = "git://github.com/vim-scripts/c.vim"
+
+[submodule "vim-airline"]
+		path = ".vim/bundle/vim-airline"
+		url = "git://github.com/bling/vim-airline"
+
