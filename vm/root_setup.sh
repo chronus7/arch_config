@@ -36,7 +36,7 @@ $aurinst yaourt
 rm -rf package-query yaourt
 
 git clone https://github.com/DaveAtGit/arch_config.git
-. /home/$user/arch_config/setup.sh
+. /home/$user/arch_config/bootstrap.sh
 CMD
 
 #-- Set password of $user
