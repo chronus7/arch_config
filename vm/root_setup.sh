@@ -35,7 +35,7 @@ $aurinst package-query
 $aurinst yaourt
 rm -rf package-query yaourt
 
-git clone https://github.com/DaveAtGit/arch_config.git
+git clone --recursive https://github.com/DaveAtGit/arch_config.git
 . /home/$user/arch_config/bootstrap.sh
 CMD
 
