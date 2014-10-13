@@ -1,5 +1,5 @@
 " Vundle settings (bundle management)
-set rtp+=/home/eled/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Vundle manages itself
