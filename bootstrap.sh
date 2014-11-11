@@ -8,4 +8,4 @@ do
 		IFS=';'
 		arr=($line)
 		${arr[2]} ln -sf "${arr[0]/\~/$HOME}" "${arr[1]/\~/$HOME}"
-done < links
+done < ~/arch_config/links
