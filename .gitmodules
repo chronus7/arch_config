@@ -18,3 +18,14 @@
 		path = ".vim/bundle/vim-airline"
 		url = "https://github.com/bling/vim-airline.git"
 
+[submodule "syntastic"]
+		path = ".vim/bundle/syntastic"
+		url = "https://github.com/scrooloose/syntastic.git"
+
+[submodule "nerdtree"]
+		path = ".vim/bundle/nerdtree"
+		url = "https://github.com/scrooloose/nerdtree.git"
+
+[submodule "vim-latex"]
+		path = ".vim/bundle/vim-latex"
+		url = "https://github.com/lervag/vim-latex.git"

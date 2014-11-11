@@ -1,3 +1,4 @@
-xrdb merge /home/eled/.Xresources
-bash /home/eled/.fehbg
+xrdb merge ~/.Xresources
+bash ~/.fehbg
+dunst &
 exec i3

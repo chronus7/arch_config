@@ -5,6 +5,12 @@ call vundle#begin()
 " Vundle manages itself
 Plugin 'gmarik/Vundle.vim'
 
+" Syntastic
+Plugin 'scrooloose/syntastic'
+
+" NERD-Tree
+Plugin 'scrooloose/nerdtree'
+
 " Python-mode
 Plugin 'klen/python-mode'
 
@@ -13,6 +19,9 @@ Plugin 'lukerandall/haskellmode-vim'
 
 " C.vim
 Plugin 'vim-scripts/c.vim'
+
+" vim-latex
+Plugin 'lervag/vim-latex'
 
 " Powerline #replaced by airline
 "Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -41,12 +50,15 @@ set ttimeoutlen=50
 au BufAdd,BufNewFile *.md set filetype=markdown
 
 " vim-latexsuite
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor = "latex"
-" set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+"set grepprg=grep\ -nH\ $*
+"let g:tex_flavor = "latex"
+"set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
 " vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
+
+" NERD-Tree
+nmap <leader>e :NERDTreeToggle<CR>

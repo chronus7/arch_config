@@ -112,6 +112,8 @@ bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Shift+Right move container to workspace next
 bindsym $mod+Ctrl+Shift+Left move container to workspace prev
 
+workspace_auto_back_and_forth yes
+
 # workspace names
 # fancy symbols: 57504,57505,57506,57520,57521,57522, 57523
 #                    ,    ,    ,    ,    ,    ,     
@@ -125,28 +127,29 @@ bindsym $mod+Ctrl+Shift+Left move container to workspace prev
 #set $w8 :::
 #set $w9 ..-
 #set $w0 .-.
-#set $w1 1 [ cmd ]
-#set $w2 2 [ web ]
-#set $w3 3 [ dev ]
-#set $w4 4 [ dev ]
-#set $w5 5 [ med ]
-#set $w6 6 [ ... ]
-#set $w7 7 [ ..: ]
-#set $w8 8 [ .:. ]
-#set $w9 9 [ :.. ]
-#set $w0 [ xbmc ]
 
-set $w1 
-set $w2 w³
-set $w3 d¹
-set $w4 d²
-set $w5 
-set $w6 ±
-set $w7 ·
-set $w8 ǁ
-set $w9 ×
-set $w0 °
+set $w1 "0:[ t ]"
+set $w2 "1:[ w ]"
+set $w3 "2:[ d ]"
+set $w4 "3:[ d ]"
+set $w5 "4:[ m ]"
+set $w6 "5:[ . ]"
+set $w7 "6:[ : ]"
+set $w8 "7:[ , ]"
+set $w9 "8:[ ; ]"
+set $w0 "9:[ ~ ]"
 
+#set $w1 
+#set $w2 w³
+#set $w3 d¹
+#set $w4 d²
+#set $w5 
+#set $w6 ±
+#set $w7 ·
+#set $w8 ǁ
+#set $w9 ×
+#set $w0 °
+#
 # switch to workspace
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
@@ -216,13 +219,17 @@ client.urgent            $red    $red    $dgray  $red
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    font pango:DejaVu Sans Mono For Powerline 8
+	strip_workspace_numbers yes
+
     colors {
         focused_workspace   $lgreen $lgreen $dgreen
         active_workspace    $dgreen $dgreen $lgray
         inactive_workspace  $dgray  $dgray  $lgray
         urgent_workspace    $red    $red    $dgray
     }
-    status_command i3status -c /home/eled/.i3/.i3status.conf
+    #status_command i3status -c /home/eled/.i3/.i3status.conf
+    status_command bash /home/eled/.i3/i3pystatus.sh
     position top
 }
 
@@ -232,3 +239,7 @@ bindsym $mod+Shift+d exec eval `cat /home/eled/scripts/runnables | dmenu -i -h 1
 
 # Screenlock
 bindsym $mod+l exec "i3lock -e -c 003300 & systemctl suspend"
+
+# Dunst (notification server)
+#bindsym $mod+Mod1+d exec eval `echo -e 'pause\nresume' | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" | { read x; [[ "$x" == "pause" ]] && killall -SIGUSR1 dunst || killall -SIGUSR2 dunst; }`
+bindsym $mod+Mod1+d exec eval `echo -e 'killall -SIGUSR1 dunst # pause\nkillall -SIGUSR2 dunst # resume' | dmenu -i -l 2 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:"`
