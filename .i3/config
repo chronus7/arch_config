@@ -14,7 +14,7 @@ set $mod Mod4
 exec --no-startup-id xcompmgr -c -C -r0 -l0 -t0 &
 
 # TODO delete
-exec i3-sensible-terminal -e ". /home/eled/scripts/.i3init"
+exec i3-sensible-terminal -e ". ~/scripts/.i3init"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -228,14 +228,14 @@ bar {
         inactive_workspace  $dgray  $dgray  $lgray
         urgent_workspace    $red    $red    $dgray
     }
-    #status_command i3status -c /home/eled/.i3/.i3status.conf
-    status_command bash /home/eled/.i3/i3pystatus.sh
+    #status_command i3status -c ~/.i3/.i3status.conf
+    status_command bash ~/.i3/i3pystatus.sh
     position top
 }
 
 # DMenu
 bindsym $mod+d exec dmenu_run -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"
-bindsym $mod+Shift+d exec eval `cat /home/eled/scripts/runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"`
+bindsym $mod+Shift+d exec eval `cat ~/scripts/runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"`
 
 # Screenlock
 bindsym $mod+l exec "i3lock -e -c 003300 & systemctl suspend"

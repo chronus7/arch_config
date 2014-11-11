@@ -8,3 +8,4 @@
 ~/arch_config/.i3;~/.i3
 ~/arch_config/.Xresources;~/.Xresources
 ~/arch_config/.xinitrc;~/.xinitrc
+~/arch_config/10-keyboard.conf;/etx/X11/xorg.conf.d/10-keyboard.conf;sudo

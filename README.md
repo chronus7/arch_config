@@ -17,5 +17,6 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
   - [x] .vim/
   - [x] .Xresources
   - [x] .xinitrc
+  - [x] /etc/X11/xorg.conf.d/10-keyboard.conf
 - [x] automated linking (let's call it bootstrapping)
-- [x] automated VM-setup
+- [x] nearly automated VM-setup
