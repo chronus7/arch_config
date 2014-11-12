@@ -46,6 +46,21 @@ set laststatus=2
 set encoding=utf-8
 set ttimeoutlen=50
 
+" Keymappings
+" -- select
+imap <S-Up> <Esc>v<Up>
+imap <S-Down> <Esc>v<Down>
+nmap <S-Up> v<Up>
+nmap <S-Down> v<Down>
+vmap <S-Up> <Up>
+vmap <S-Down> <Down>
+" TODO add left/right
+" -- move line
+imap <C-Up> <Esc><C-Up>i
+imap <C-Down> <Esc><C-Down>i
+nmap <C-Up> dd<Up>P
+nmap <C-Down> ddp
+
 " *.md as markdown
 au BufAdd,BufNewFile *.md set filetype=markdown
 
@@ -55,7 +70,7 @@ au BufAdd,BufNewFile *.md set filetype=markdown
 "set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
 " vim-airline
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
