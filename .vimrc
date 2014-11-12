@@ -11,6 +11,9 @@ Plugin 'scrooloose/syntastic'
 " NERD-Tree
 Plugin 'scrooloose/nerdtree'
 
+" Fugitive
+Plugin 'tpope/vim-fugitive'
+
 " Python-mode
 Plugin 'klen/python-mode'
 
@@ -54,7 +57,6 @@ nmap <S-Up> v<Up>
 nmap <S-Down> v<Down>
 vmap <S-Up> <Up>
 vmap <S-Down> <Down>
-" TODO add left/right
 " -- move line
 imap <C-Up> <Esc><C-Up>i
 imap <C-Down> <Esc><C-Down>i
