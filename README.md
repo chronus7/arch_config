@@ -11,8 +11,9 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
 
 - [ ] General configs
   - [ ] .config/
-  - [x] .i3/
   - [x] .bashrc
+  - [x] .inputrc
+  - [x] .i3/
   - [x] .vimrc
   - [x] .vim/
   - [x] .Xresources

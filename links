@@ -1,5 +1,7 @@
 ~/arch_config/.bashrc;~/.bashrc
 ~/.bashrc;/root/.bashrc;sudo
+~/arch_config/.inputrc;~/.inputrc
+~/.inputrc;/root/.inputrc;sudo
 ~/.bash_profile;/root/.bash_profile;sudo
 ~/arch_config/.vimrc;~/.vimrc
 ~/.vimrc;/root/.vimrc;sudo
