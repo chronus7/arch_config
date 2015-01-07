@@ -102,7 +102,7 @@ new_float normal
 
 assign [class="Chromium"] $w2
 assign [class="Vlc"] $w6
-assign [class="Mupdf"] $w7
+#assign [class="MuPDF"] $w5
 assign [class="Xbmc"] $w0
 
 # generic workspace switch

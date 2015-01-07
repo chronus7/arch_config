@@ -68,11 +68,6 @@ nmap <C-Down> ddp
 " *.md as markdown
 au BufAdd,BufNewFile *.md set filetype=markdown
 
-" vim-latexsuite
-"set grepprg=grep\ -nH\ $*
-"let g:tex_flavor = "latex"
-"set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
-
 " vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1

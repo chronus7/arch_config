@@ -7,9 +7,12 @@
 
 [ -n "$XTERM_VERSION" ] && transset-df -a 0.75 > /dev/null
 
+alias cdp='cd -P'
 alias ls='ls --color=auto'
 alias lsl='ls -lAhv --color=auto'
 alias xt='xterm &'
+alias f='find . -iname'
+alias runs='ps -ef | grep -v grep | grep'
 
 # ---
 # prompt
