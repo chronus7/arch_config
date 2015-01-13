@@ -11,8 +11,14 @@ Plugin 'scrooloose/syntastic'
 " NERD-Tree
 Plugin 'scrooloose/nerdtree'
 
+" Tagbar
+Plugin 'majutsushi/tagbar'
+
 " Fugitive
 Plugin 'tpope/vim-fugitive'
+
+" CTRL-P
+Plugin 'kien/ctrlp.vim'
 
 " Python-mode
 Plugin 'klen/python-mode'
@@ -76,3 +82,9 @@ let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 " NERD-Tree
 nmap <leader>e :NERDTreeToggle<CR>
+
+" Tagbar
+nmap <leader>t :TagbarToggle<CR>
+
+" Make
+nmap <leader>m :w<CR>:make<CR>

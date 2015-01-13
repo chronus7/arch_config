@@ -33,3 +33,11 @@
 [submodule "vim-latex"]
 		path = ".vim/bundle/vim-latex"
 		url = "https://github.com/lervag/vim-latex.git"
+
+[submodule "tagbar"]
+		path = ".vim/bundle/tagbar"
+		url = "https://github.com/majutsushi/tagbar.git"
+
+[submoduel "ctrlp"]
+		path = ".vim/bundle/ctrl"
+		url = "https://github.com/kien/ctrlp.vim.git"

@@ -13,6 +13,8 @@ alias lsl='ls -lAhv --color=auto'
 alias xt='xterm &'
 alias f='find . -iname'
 alias runs='ps -ef | grep -v grep | grep'
+alias spell='hunspell -a -m -d en_GB'
+alias spell_de='hunspell -a -m -d de_DE'
 
 # ---
 # prompt
