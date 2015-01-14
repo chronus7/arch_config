@@ -38,6 +38,6 @@
 		path = ".vim/bundle/tagbar"
 		url = "https://github.com/majutsushi/tagbar.git"
 
-[submoduel "ctrlp"]
-		path = ".vim/bundle/ctrl"
+[submoduel "ctrlp.vim"]
+		path = ".vim/bundle/ctrlp.vim"
 		url = "https://github.com/kien/ctrlp.vim.git"
