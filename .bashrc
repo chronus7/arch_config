@@ -10,11 +10,45 @@
 alias cdp='cd -P'
 alias ls='ls --color=auto'
 alias lsl='ls -lAhv --color=auto'
+alias aur='yaourt'
+alias vi3='vim ~/.i3/config'
 alias xt='xterm &'
 alias f='find . -iname'
 alias runs='ps -ef | grep -v grep | grep'
-alias spell='hunspell -a -m -d en_GB'
-alias spell_de='hunspell -a -m -d de_DE'
+alias pu="pip install -U \$(pip list | awk '{print \$1}')"
+alias myip='echo $(curl -s http://myip.dnsomatic.com 2> /dev/null)'
+alias fuck='sudo $(history -p \!\!)'
+
+# ---
+# spelling
+# ---
+function spell()
+{
+	dict="en_GB"
+	file="$1"
+	if [[ "$1" == "-d" ]]; then
+		dict="$2"
+		file="$3"
+	fi
+	hunspell -a -m -d $dict "$file" | grep "&"
+}
+alias spellde='spell -d de_DE'
+
+# ---
+# continuous
+# ---
+function continuous()
+{
+	# arg1: timeout
+	# arg2: sleep-time
+	# arg*: command
+	while :
+	do
+		timeout $1 ${*:3}
+		echo -e "\e[31m >>>\e[m"
+		sleep $2
+	done
+}
 
 # ---
 # prompt

@@ -66,13 +66,13 @@ nmap <S-Down> v<Down>
 vmap <S-Up> <Up>
 vmap <S-Down> <Down>
 " -- move line
-imap <C-Up> <Esc><C-Up>i
-imap <C-Down> <Esc><C-Down>i
-nmap <C-Up> dd<Up>P
-nmap <C-Down> ddp
-
-" *.md as markdown
-au BufAdd,BufNewFile *.md set filetype=markdown
+imap <C-S-Up> <Esc><C-S-Up>i
+imap <C-S-Down> <Esc><C-S-Down>i
+nmap <C-S-Up> dd<Up>P
+nmap <C-S-Down> ddp
+" -- move page
+nmap <C-Up> <C-y>
+nmap <C-Down> <C-e>
 
 " vim-airline
 let g:airline_powerline_fonts = 1
@@ -87,4 +87,19 @@ nmap <leader>e :NERDTreeToggle<CR>
 nmap <leader>t :TagbarToggle<CR>
 
 " Make
-nmap <leader>m :w<CR>:make<CR>
+function! s:SilentMakeCommand(cmdline)
+	silent execute ':pedit! '.a:cmdline
+	wincmd P
+	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+	silent execute "$read!".a:cmdline
+	" setlocal nomodifiable
+	wincmd p
+endfunction
+command! -complete=shellcmd -nargs=+ SilentShell call s:SilentMakeCommand(<q-args>)
+nmap <silent> <leader>m :w<CR>:SilentShell make<CR>
+"nmap <leader>m :w<CR>:make<CR>
+
+" Spellchecking
+nmap <leader>sd :setlocal spell spelllang=de<CR>
+nmap <leader>se :setlocal spell spelllang=en<CR>
+nmap <leader>so :set nospell<CR>

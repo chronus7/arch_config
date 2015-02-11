@@ -80,7 +80,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -104,6 +104,7 @@ assign [class="Chromium"] $w2
 assign [class="Vlc"] $w6
 #assign [class="MuPDF"] $w5
 assign [class="Kodi"] $w0
+for_window [class="qutebrowser"] floating enable
 
 # generic workspace switch
 bindsym $mod+Ctrl+Right workspace next
@@ -177,6 +178,12 @@ bindsym $mod+Shift+0 move container to workspace $w0
 # move to other output
 bindsym $mod+o move container to output right
 bindsym $mod+Shift+o move workspace to output right
+bindsym $mod+p move container to output VGA1
+bindsym $mod+Shift+p move container to HDMI1
+
+# scratchpad
+bindsym $mod+Shift+s move scratchpad
+bindsym $mod+s scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -237,12 +244,31 @@ bar {
 bindsym $mod+d exec dmenu_run -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"
 bindsym $mod+Shift+d exec eval `cat ~/scripts/.runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"`
 
-# Screenlock
-bindsym $mod+l exec "i3lock -e -c 003300 & systemctl suspend"
-
 # Dunst (notification server)
 #bindsym $mod+Mod1+d exec eval `echo -e 'pause\nresume' | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" | { read x; [[ "$x" == "pause" ]] && killall -SIGUSR1 dunst || killall -SIGUSR2 dunst; }`
 bindsym $mod+Mod1+d exec eval `echo -e 'killall -SIGUSR1 dunst # pause\nkillall -SIGUSR2 dunst # resume' | dmenu -i -l 2 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:"`
 
 # Complex commands
-#bindsym $mod+c exec eval `cat ~/scripts/.complex | dmenu -i -n "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -l 5`
+bindsym $mod+c exec eval $(cat ~/scripts/.complex | dmenu -i -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -l 5 -p "command:")
+
+# Dynamic workspaces
+bindsym $mod+z exec i3-input -F 'workspace "%s"' -P 'Workspace: '
+bindsym $mod+Shift+z exec ~/scripts/.workspaces.py -l | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "workspaces:" | ~/scripts/.workspaces.py --
+
+# Monitor-setting
+bindsym $mod+m exec ~/scripts/.monitors -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"
+
+# Backlight
+bindsym $mod+b exec eval $(dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "xbacklight =" | echo xbacklight -set $(awk '{print $0}'))
+
+# Screenlock
+bindsym $mod+l exec "i3lock -e -c 003300 & systemctl suspend"
+bindsym XF86Sleep exec "i3lock -e -c 003300 & systemctl suspend"
+
+# Meta-Keys
+bindsym XF86MonBrightnessUp exec xbacklight -inc 2.5 -time 50
+bindsym XF86MonBrightnessDown exec xbacklight -dec 2.5 -time 50
+
+bindsym XF86AudioRaiseVolume exec amixer sset Master '10%+'
+bindsym XF86AudioLowerVolume exec amixer sset Master '10%-'
+bindsym XF86AudioMute exec amixer sset Master toggle

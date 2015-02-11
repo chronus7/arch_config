@@ -10,7 +10,7 @@ status.register("clock",
 # Battery
 status.register("battery",
                 not_present_text="AC",
-                format="{status} {percentage:.1f}% {remaining}",
+                format="{status} {percentage:.1f}%[ {remaining}]",
                 status={"DIS": "↓",
                         "CHR": "↑",
                         "FULL": "="})
@@ -26,7 +26,16 @@ status.register("alsa",
 # Indicators
 status.register("shell",
                 command="~/scripts/leds.sh",
-                color="#00ff00")
+                color="#00ff00",
+                interval=2)
+
+# XKB-Layout
+status.register("shell",
+                command="~/scripts/xkblayout-state print 'L: %s' | "
+                        "tr '[:lower:]' '[:upper:]' | { read _x; "
+                        "[[ \"$_x\" == \"L: DE\" ]] && { echo $_x; exit 1; } "
+                        "|| { echo $_x; exit 0; }; }",
+                interval=2)
 
 # Backlight
 status.register("backlight",
@@ -55,5 +64,10 @@ status.register("wireless",
                 interface="wlp3s0",
                 format_up="{interface}: {essid}")
 
+# IP
+# status.register("shell",
+#                 command="curl -s http://myip.dnsomatic.com 2> /dev/null"
+#                         " || echo no ip",
+#                 interval=30)
 
 status.run()
