@@ -53,16 +53,23 @@ function continuous()
 # ---
 # prompt
 # ---
-#PS1='[\u@\h \W]\$ '
 function _root_color()
 {
     if [ ${UID} -eq 0 ]; then
         echo '1'
-    else
+	elif [ ${UID} -eq 1000 ]; then
         echo '2'
+	else
+		echo '5'
     fi
 }
-PS1='[\[\e[3$(_root_color)m\]\w\e[m] '
+function _special_prompt() {
+	folder="[$(pwd)]"
+	width=$(stty size | cut -d" " -f2)
+	PS1=$(python -c "print(' '*($width-1-len(\"$folder\".replace(\"$HOME\", '~'))) + \"[\[\033[3$(_root_color)m\]\w\[\033[m\]]\r\[\033[3$(_root_color)m\]―――\[\033[m\] \")")
+}
+#PS1='[\[\e[3$(_root_color)m\]\w\e[m] '
+PROMPT_COMMAND=_special_prompt
 PS2='... '
 
 # ---
