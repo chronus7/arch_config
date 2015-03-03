@@ -47,8 +47,8 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-#bindsym $mod+j focus left
-#bindsym $mod+k focus down
+bindsym $mod+j focus down
+bindsym $mod+k focus up
 #bindsym $mod+l focus up
 #bindsym $mod+semicolon focus right
 
@@ -249,7 +249,7 @@ bindsym $mod+Shift+d exec eval `cat ~/scripts/.runnables | dmenu -i -h 18 -nb "#
 bindsym $mod+Mod1+d exec eval `echo -e 'killall -SIGUSR1 dunst # pause\nkillall -SIGUSR2 dunst # resume' | dmenu -i -l 2 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:"`
 
 # Complex commands
-bindsym $mod+c exec eval $(cat ~/scripts/.complex | dmenu -i -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -l 5 -p "command:")
+bindsym $mod+c exec eval $(cat ~/scripts/.complex | dmenu -i -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -l 6 -p "command:")
 
 # Dynamic workspaces
 bindsym $mod+z exec i3-input -F 'workspace "%s"' -P 'Workspace: '

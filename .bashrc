@@ -64,9 +64,27 @@ function _root_color()
     fi
 }
 function _special_prompt() {
-	folder="[$(pwd)]"
-	width=$(stty size | cut -d" " -f2)
-	PS1=$(python -c "print(' '*($width-1-len(\"$folder\".replace(\"$HOME\", '~'))) + \"[\[\033[3$(_root_color)m\]\w\[\033[m\]]\r\[\033[3$(_root_color)m\]―――\[\033[m\] \")")
+	length=0
+	venv=""
+	if [[ -n "$VIRTUAL_ENV" ]]; then
+		venv="($(basename $VIRTUAL_ENV))"
+		length=$(expr length "$venv")
+	fi
+	git=""
+	branch=$(git branch 2>&1)
+	res=$?
+	if [[ $res -eq 0 ]]; then
+		git="{${branch/\* /}}"
+		l=$(expr length "$git")
+		length=$((length + l))
+	fi
+	path=$(pwd)
+	path=${path/$HOME/\~}
+	plength=$(expr length "$path")
+	length=$((plength + length))
+	width=$((COLUMNS - length - 3))
+	spaced=$(python -c "print(' '*$width)")
+	PS1="$spaced$git$venv[\[\033[3$(_root_color)m\]$path\[\033[m\]]\r\[\033[3$(_root_color)m\]―――\[\033[m\] "
 }
 #PS1='[\[\e[3$(_root_color)m\]\w\e[m] '
 PROMPT_COMMAND=_special_prompt
