@@ -29,8 +29,11 @@ Plugin 'lukerandall/haskellmode-vim'
 " C.vim
 Plugin 'vim-scripts/c.vim'
 
-" vim-latex
-Plugin 'lervag/vim-latex'
+" vim-latex #replaced by LaTeX-Box
+"Plugin 'lervag/vim-latex'
+
+" LaTeX-Box
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " Powerline #replaced by airline
 "Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -57,6 +60,12 @@ set laststatus=2
 set encoding=utf-8
 set ttimeoutlen=50
 
+" cursorline
+set cursorline
+"hi CursorLine cterm=NONE ctermbg=black ctermfg=NONE
+hi CursorLine cterm=NONE ctermbg=black
+hi CursorLineNr ctermbg=black
+
 " Keymappings
 " -- select
 imap <S-Up> <Esc>v<Up>
@@ -73,6 +82,12 @@ nmap <C-S-Down> ddp
 " -- move page
 nmap <C-Up> <C-y>
 nmap <C-Down> <C-e>
+
+" -- toggle search-highlighting
+nnoremap <silent> <Space> :set hlsearch! hlsearch?<CR>
+
+" -- cycle tabs with Alt-Tab (<C-Tab> does not work properly in xterm)
+nmap <A-Tab> :tabnext<CR>
 
 " vim-airline
 let g:airline_powerline_fonts = 1
@@ -98,6 +113,23 @@ endfunction
 command! -complete=shellcmd -nargs=+ SilentShell call s:SilentMakeCommand(<q-args>)
 nmap <silent> <leader>m :w<CR>:SilentShell make<CR>
 "nmap <leader>m :w<CR>:make<CR>
+
+" List Search-results
+" function! s:SilentSearchCommand(args)
+" 	silent execute ':pedit! '.a:args
+" 	wincmd P
+" 	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+" 	setlocal hlsearch
+" 	silent execute "$read! grep '".a:args."' #"
+" 	" not working "silent execute search(a:args)
+" 	wincmd p
+" endfunction
+" command! -complete=shellcmd -nargs=+ SilentSearch call s:SilentSearchCommand(<q-args>)
+" nmap <leader>s :SilentSearch 
+
+" Diff
+" http://vimdoc.sourceforge.net/htmldoc/diff.html#diff-original-file
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
 " Spellchecking
 nmap <leader>sd :setlocal spell spelllang=de<CR>

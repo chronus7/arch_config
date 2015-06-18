@@ -19,5 +19,7 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
   - [x] .Xresources
   - [x] .xinitrc
   - [x] /etc/X11/xorg.conf.d/10-keyboard.conf
-- [x] automated linking (let's call it bootstrapping)
+- [x] automated linking
+  - [x] dotextract.sh
+  - [x] dots.config
 - [x] nearly automated VM-setup

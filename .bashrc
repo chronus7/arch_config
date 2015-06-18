@@ -16,8 +16,26 @@ alias xt='xterm &'
 alias f='find . -iname'
 alias runs='ps -ef | grep -v grep | grep'
 alias pu="pip install -U \$(pip list | awk '{print \$1}')"
-alias myip='echo $(curl -s http://myip.dnsomatic.com 2> /dev/null)'
+alias myip="curl icanhazip.com"
 alias fuck='sudo $(history -p \!\!)'
+alias vbm='vim ~/coding/misc/startpage/index.js'
+function pdf() { mupdf "$@" & }
+
+# ---
+# samba mount
+# ---
+function mntsmb()
+{
+	sudo mount -t cifs //DAVETOWER/$1 /mnt/samba -o user=Dave,uid=1000,gid=100
+}
+
+# ---
+# find string
+# ---
+function fstr()
+{
+	find . -type f -exec grep -n --color=always -E "$1" {} +
+}
 
 # ---
 # spelling
@@ -33,6 +51,24 @@ function spell()
 	hunspell -a -m -d $dict "$file" | grep "&"
 }
 alias spellde='spell -d de_DE'
+
+# ---
+# highlighting
+# ---
+function hless()
+{
+	# style seems to depend on terminal-colors.
+	file="$1"
+	option=""
+	[[ -n "$2" ]] && option="-S $2"
+	highlight -O ANSI $option "$file" | less -R
+}
+function hcat() {
+	file="$1"
+	option=""
+	[[ -n "$2" ]] && option="-S $2"
+	highlight -O ANSI $option "$file"
+}
 
 # ---
 # continuous
@@ -82,6 +118,7 @@ function _special_prompt() {
 	path=${path/$HOME/\~}
 	plength=$(expr length "$path")
 	length=$((plength + length))
+	COLUMNS=$(stty size | cut -d' ' -f2)
 	width=$((COLUMNS - length - 3))
 	spaced=$(python -c "print(' '*$width)")
 	PS1="$spaced$git$venv[\[\033[3$(_root_color)m\]$path\[\033[m\]]\r\[\033[3$(_root_color)m\]―――\[\033[m\] "

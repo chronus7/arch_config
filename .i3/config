@@ -91,19 +91,19 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-#bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+o focus child
 
 # windows
 new_window 1pixel
 new_float normal
 
 assign [class="Chromium"] $w2
-assign [class="Vlc"] $w6
+assign [class="Vlc"] $w5
 #assign [class="MuPDF"] $w5
-assign [class="Kodi"] $w0
+assign [class="Kodi"] "[ kodi ]"
 for_window [class="qutebrowser"] floating enable
 
 # generic workspace switch
@@ -139,6 +139,7 @@ set $w7 "6:[ : ]"
 set $w8 "7:[ , ]"
 set $w9 "8:[ ; ]"
 set $w0 "9:[ ~ ]"
+set $wscr "100:[ - ]"
 
 #set $w1 
 #set $w2 w³
@@ -162,6 +163,7 @@ bindsym $mod+7 workspace $w7
 bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace $w0
+bindsym $mod+minus workspace $wscr
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
@@ -176,10 +178,25 @@ bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w0
 
 # move to other output
-bindsym $mod+o move container to output right
-bindsym $mod+Shift+o move workspace to output right
-bindsym $mod+p move container to output VGA1
-bindsym $mod+Shift+p move container to HDMI1
+mode "monitor" {
+	bindsym Left move container to output left
+	bindsym Right move container to output right
+	bindsym Up move container to output up
+	bindsym Down move container to output down
+
+	bindsym Shift+Left move workspace to output left
+	bindsym Shift+Right move workspace to output right
+	bindsym Shift+Up move workspace to output up
+	bindsym Shift+Down move workspace to output down
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+Shift+m mode "monitor"
+# bindsym $mod+o move container to output right
+# bindsym $mod+Shift+o move workspace to output right
+# bindsym $mod+p move container to output VGA1
+# bindsym $mod+Shift+p move container to HDMI1
 
 # scratchpad
 bindsym $mod+Shift+s move scratchpad
@@ -229,6 +246,12 @@ bar {
     font pango:DejaVu Sans Mono For Powerline 8
 	strip_workspace_numbers yes
 
+	#mode hide
+	#hidden_state hide
+	#modifier $mod
+	#separator_symbol "╱"
+	#separator_symbol ""
+
     colors {
         focused_workspace   $lgreen $lgreen $dgreen
         active_workspace    $dgreen $dgreen $lgray
@@ -236,7 +259,8 @@ bar {
         urgent_workspace    $red    $red    $dgray
     }
     #status_command i3status -c ~/.i3/.i3status.conf
-    status_command bash ~/.i3/i3pystatus.sh
+    #status_command bash ~/.i3/i3pystatus.sh
+    status_command bash ~/coding/misc/statusbar/bar.sh
     position top
 }
 
@@ -269,6 +293,6 @@ bindsym XF86Sleep exec "i3lock -e -c 003300 & systemctl suspend"
 bindsym XF86MonBrightnessUp exec xbacklight -inc 2.5 -time 50
 bindsym XF86MonBrightnessDown exec xbacklight -dec 2.5 -time 50
 
-bindsym XF86AudioRaiseVolume exec amixer sset Master '10%+'
-bindsym XF86AudioLowerVolume exec amixer sset Master '10%-'
+bindsym XF86AudioRaiseVolume exec amixer sset Master '5%+'
+bindsym XF86AudioLowerVolume exec amixer sset Master '5%-'
 bindsym XF86AudioMute exec amixer sset Master toggle

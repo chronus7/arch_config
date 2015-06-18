@@ -3,7 +3,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-nmap <leader>p :let g:pymode=0
+nmap <leader>p :let pymode=0
 
 let g:pymode_python = 'python3'
 let g:pymode_indent = 1
