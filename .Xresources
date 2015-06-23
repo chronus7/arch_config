@@ -1,11 +1,39 @@
 Xft*antialias: true
 Xft*autohint: true
-XTerm*background: #121212
-XTerm*foreground: #dedede
-XTerm*cursorColor: #cdcdcd
 XTerm*scrollBar: false
 XTerm*rightScrollBar: false
-XTerm*faceName: DejaVu Sans Mono For Powerline
-XTerm*faceSize: 9
+! XTerm*faceName: DejaVu Sans Mono For Powerline
+XTerm*faceName: DejaVu Sans Mono
+XTerm*faceSize: 10
 XTerm*toolBar: off
 XTerm*transparent: true
+
+! -- colours
+XTerm*background: #121212
+XTerm*foreground: #BBBBBB
+XTern*cursorColor: #CCCCCC
+
+!black
+*color0:#000000
+*color8:#666666
+!red
+*color1:#AA0000
+*color9:#EE3333
+!green
+*color2:#339933
+*color10:#66AA66
+!yellow
+*color3:#DDAA33
+*color11:#EEBB55
+!blue
+*color4:#225577
+*color12:#337799
+!magenta
+*color5:#AA1177
+*color13:#DD2299
+!cyan
+*color6:#7788BB
+*color14:#8899FF
+!white
+*color7:#DDDDDD
+*color15:#FFFFFF

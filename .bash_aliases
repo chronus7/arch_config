@@ -16,6 +16,7 @@ alias vib='vim ~/coding/misc/startbar/bar.sh'
 # -- system --
 alias aur='yaourt'
 alias runs='ps -ef | grep -v grep | grep'
+alias update='sudo pacman -Syu && yaourt -Syua'
 alias pu='pip install -U \$(pip list | cut -d" " -f1'
 alias myip='curl icanhazip.com'
 alias nspawn='sudo systemd-nspawn -bD'

@@ -54,6 +54,7 @@ set mouse=a
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set expandtab
 set nowrap
 
 set laststatus=2
@@ -90,10 +91,19 @@ nnoremap <silent> <Space> :set hlsearch! hlsearch?<CR>
 nmap <A-Tab> :tabnext<CR>
 
 " vim-airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ""
+let g:airline_right_sep = ""
+let g:airline_symbols.branch = 'b'
+let g:airline_symbols.readonly = 'ro'
+let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline_theme = "ubaryd"
 
 " NERD-Tree
 nmap <leader>e :NERDTreeToggle<CR>
@@ -125,7 +135,7 @@ nmap <silent> <leader>m :w<CR>:SilentShell make<CR>
 " 	wincmd p
 " endfunction
 " command! -complete=shellcmd -nargs=+ SilentSearch call s:SilentSearchCommand(<q-args>)
-" nmap <leader>s :SilentSearch 
+" nmap <leader>s :SilentSearch
 
 " Diff
 " http://vimdoc.sourceforge.net/htmldoc/diff.html#diff-original-file

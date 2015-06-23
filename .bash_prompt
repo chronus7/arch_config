@@ -1,0 +1,118 @@
+#
+# ~/.bash_prompt
+#
+
+# -- colours
+
+_bp_red="\[\033[31m\]"
+_bp_green="\[\033[32m\]"
+_bp_yellow="\[\033[33m\]"
+_bp_blue="\[\033[34m\]"
+_bp_lilac="\[\033[35m\]"
+_bp_cyan="\[\033[36m\]"
+_bp_white="\[\033[37m\]"
+_bp_gray="\[\033[39m\]"
+_bp_neutral="\[\033[m\]"
+
+function _bp_usercolor() {
+# :: provides the current users colour
+    if [ $UID -eq 0 ]; then
+        echo $_bp_red
+    elif [ $UID -eq 1000 ]; then
+        echo $_bp_green
+    else
+        echo $_bp_lilac
+    fi
+}
+
+function _bp_color() {
+# :: returns a custom colour
+# @1 the colour-code
+    echo "\[\033[3${1}m\]"
+}
+
+# -- paths
+
+function _bp_pwd() {
+# :: returns the current path (like \w)
+    path=$(pwd)
+    echo ${path/$HOME/\~}
+}
+
+function _bp_pyvenv() {
+# :: returns the current python virtualenv
+    if [ -n "$VIRTUAL_ENV" ]; then
+        echo $(basename $VIRTUAL_ENV)
+    fi
+}
+
+# -- git
+
+function _bp_gitbranch() {
+# :: returns the current git branch
+    b=$(git branch 2>&1)
+    if [ $? -eq 0 ]; then
+        echo ${b/\*/}
+    fi
+}
+
+# -- others
+
+function _bp_columns() {
+# :: updates and returns current number of columns (aka width of term)
+    COLUMNS=$(stty size | cut -d' ' -f2)
+    echo $COLUMNS
+}
+
+# -- prompt-functions
+
+function _bprompt_wide_line() {
+    venv="$(_bp_pyvenv)"
+    [ -n "$venv" ] && venv="($venv)"
+    length=$(expr length "$venv")
+    git="$(_bp_gitbranch)"
+    [ -n "$git" ] && git="{$git}"
+    length=$((length + $(expr length "$git")))
+    path=$(_bp_pwd)
+    length=$((length + $(expr length "$path")))
+    width=$(($(_bp_columns) - length - 3))
+	spaced=$(python -c "print(' '*$width)")
+
+    PS1="$spaced$git$venv[$(_bp_usercolor)$path$_bp_neutral]\r$(_bp_usercolor)―――$_bp_neutral "
+    PS2="... "
+}
+
+function _bprompt_simple() {
+    venv=$(_bp_pyvenv)
+    [ -n "$venv" ] && venv="($venv)"
+    gitbr=$(_bp_gitbranch)
+    [ -n "$gitbr" ] && gitbr="{$gitbr}"
+
+    PS1="[$(_bp_usercolor)\w$_bp_neutral]$gitbr$venv "
+    PS2="... "
+}
+
+function _bprompt_maybedouble() {
+    # virtualenv
+    v=$(_bp_pyvenv)
+    [ -n "$v" ] && v="($v)"
+    # git-branch
+    g=$(_bp_gitbranch)
+    [ -n "$g" ] && g="{$g}"
+    # battery-level
+    b=$(awk '{s+=$1}END{printf "%d", s/NR}' /sys/class/power_supply/BAT*/capacity)
+    [ $b -lt 25 ] && b="[$(awk '{if (NR > 1){printf " | "};printf "BAT%d: %2.2f", NR, $1}' /sys/class/power_supply/BAT*/capacity)]" || b=""
+    dline="$b$g$v"
+    dline="${dline/\\n/ \\ }"
+    [ -n "$dline" ] && dline="$(_bp_color '7;2')$dline$_bp_neutral\n"
+
+    default="[$(_bp_usercolor)\w$_bp_neutral] "
+    PS1=$dline$default
+    PS2="... "
+}
+
+# -- PROMPT
+
+PROMPT_COMMAND=_bprompt_maybedouble
+
+# vim: ft=sh

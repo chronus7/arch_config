@@ -7,125 +7,14 @@
 
 [ -n "$XTERM_VERSION" ] && transset-df -a 0.75 > /dev/null
 
-alias cdp='cd -P'
-alias ls='ls --color=auto'
-alias lsl='ls -lAhv --color=auto'
-alias aur='yaourt'
-alias vi3='vim ~/.i3/config'
-alias xt='xterm &'
-alias f='find . -iname'
-alias runs='ps -ef | grep -v grep | grep'
-alias pu="pip install -U \$(pip list | awk '{print \$1}')"
-alias myip="curl icanhazip.com"
-alias fuck='sudo $(history -p \!\!)'
-alias vbm='vim ~/coding/misc/startpage/index.js'
-function pdf() { mupdf "$@" & }
-
-# ---
-# samba mount
-# ---
-function mntsmb()
-{
-	sudo mount -t cifs //DAVETOWER/$1 /mnt/samba -o user=Dave,uid=1000,gid=100
-}
-
-# ---
-# find string
-# ---
-function fstr()
-{
-	find . -type f -exec grep -n --color=always -E "$1" {} +
-}
-
-# ---
-# spelling
-# ---
-function spell()
-{
-	dict="en_GB"
-	file="$1"
-	if [[ "$1" == "-d" ]]; then
-		dict="$2"
-		file="$3"
-	fi
-	hunspell -a -m -d $dict "$file" | grep "&"
-}
-alias spellde='spell -d de_DE'
-
-# ---
-# highlighting
-# ---
-function hless()
-{
-	# style seems to depend on terminal-colors.
-	file="$1"
-	option=""
-	[[ -n "$2" ]] && option="-S $2"
-	highlight -O ANSI $option "$file" | less -R
-}
-function hcat() {
-	file="$1"
-	option=""
-	[[ -n "$2" ]] && option="-S $2"
-	highlight -O ANSI $option "$file"
-}
-
-# ---
-# continuous
-# ---
-function continuous()
-{
-	# arg1: timeout
-	# arg2: sleep-time
-	# arg*: command
-	while :
-	do
-		timeout $1 ${*:3}
-		echo -e "\e[31m >>>\e[m"
-		sleep $2
-	done
-}
+source ~/.bash_aliases
 
 # ---
 # prompt
 # ---
-function _root_color()
-{
-    if [ ${UID} -eq 0 ]; then
-        echo '1'
-	elif [ ${UID} -eq 1000 ]; then
-        echo '2'
-	else
-		echo '5'
-    fi
-}
-function _special_prompt() {
-	length=0
-	venv=""
-	if [[ -n "$VIRTUAL_ENV" ]]; then
-		venv="($(basename $VIRTUAL_ENV))"
-		length=$(expr length "$venv")
-	fi
-	git=""
-	branch=$(git branch 2>&1)
-	res=$?
-	if [[ $res -eq 0 ]]; then
-		git="{${branch/\* /}}"
-		l=$(expr length "$git")
-		length=$((length + l))
-	fi
-	path=$(pwd)
-	path=${path/$HOME/\~}
-	plength=$(expr length "$path")
-	length=$((plength + length))
-	COLUMNS=$(stty size | cut -d' ' -f2)
-	width=$((COLUMNS - length - 3))
-	spaced=$(python -c "print(' '*$width)")
-	PS1="$spaced$git$venv[\[\033[3$(_root_color)m\]$path\[\033[m\]]\r\[\033[3$(_root_color)m\]―――\[\033[m\] "
-}
-#PS1='[\[\e[3$(_root_color)m\]\w\e[m] '
-PROMPT_COMMAND=_special_prompt
+PS1='[\[\e[37;1m\]\w\[\e[m\]] '
 PS2='... '
+source ~/.bash_prompt
 
 # ---
 # man

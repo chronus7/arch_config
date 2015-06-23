@@ -20,7 +20,8 @@ exec i3-sensible-terminal -e ". ~/scripts/.i3init"
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono For Powerline 8
+font pango:DejaVu Sans Mono 8
+# For Powerline 8
 # TODO any difference???
 #font pango:DejaVu Sans Mono 8
 # Before i3 v4.8, we used to recommend this one as the default:
@@ -103,7 +104,6 @@ new_float normal
 assign [class="Chromium"] $w2
 assign [class="Vlc"] $w5
 #assign [class="MuPDF"] $w5
-assign [class="Kodi"] "[ kodi ]"
 for_window [class="qutebrowser"] floating enable
 
 # generic workspace switch
@@ -118,39 +118,29 @@ workspace_auto_back_and_forth yes
 # workspace names
 # fancy symbols: 57504,57505,57506,57520,57521,57522, 57523
 #                    ,    ,    ,    ,    ,    ,     
-#set $w1 ...
-#set $w2 ..:
-#set $w3 .:.
-#set $w4 .::
-#set $w5 :..
-#set $w6 :.:
-#set $w7 ::.
-#set $w8 :::
-#set $w9 ..-
-#set $w0 .-.
 
-set $w1 "0:[ t ]"
-set $w2 "1:[ w ]"
-set $w3 "2:[ d ]"
-set $w4 "3:[ d ]"
-set $w5 "4:[ m ]"
-set $w6 "5:[ . ]"
-set $w7 "6:[ : ]"
-set $w8 "7:[ , ]"
-set $w9 "8:[ ; ]"
-set $w0 "9:[ ~ ]"
-set $wscr "100:[ - ]"
-
-#set $w1 
-#set $w2 w³
-#set $w3 d¹
-#set $w4 d²
-#set $w5 
-#set $w6 ±
-#set $w7 ·
-#set $w8 ǁ
-#set $w9 ×
-#set $w0 °
+set $w1 "0: cmd "
+set $w2 "1: web "
+set $w3 "2: dev "
+set $w4 "3: dev "
+set $w5 "4: med "
+set $w6 "5: ... "
+set $w7 "6: ..: "
+set $w8 "7: .:. "
+set $w9 "8: .:: "
+set $w0 "9: :.. "
+set $wscr "100: tmp "
+# set $w1 "0:[ t ]"
+# set $w2 "1:[ w ]"
+# set $w3 "2:[ d ]"
+# set $w4 "3:[ d ]"
+# set $w5 "4:[ m ]"
+# set $w6 "5:[ . ]"
+# set $w7 "6:[ : ]"
+# set $w8 "7:[ , ]"
+# set $w9 "8:[ ; ]"
+# set $w0 "9:[ ~ ]"
+# set $wscr "100:[ - ]"
 
 # switch to workspace
 bindsym $mod+1 workspace $w1
@@ -228,12 +218,16 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Colors
-set $lgreen #15AA15
-set $dgreen #003300
-set $mgreen #005500
-set $dgray  #333333
-set $lgray  #888888
-set $red    #FF6615
+#set $lgreen #15AA15
+#set $dgreen #003300
+#set $dgray  #333333
+#set $lgray  #888888
+#set $red    #FF6615
+set $lgreen #55AA55
+set $dgreen #004400
+set $dgray  #222222
+set $lgray  #666666
+set $red    #EE5555
 
 client.focused           $lgreen $lgreen $dgreen $lgreen
 client.unfocused         $dgray  $dgray  $lgray  $dgray
@@ -243,13 +237,14 @@ client.urgent            $red    $red    $dgray  $red
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    font pango:DejaVu Sans Mono For Powerline 8
+    font pango:DejaVu Sans Mono 8
+	# For Powerline 8
 	strip_workspace_numbers yes
 
 	#mode hide
 	#hidden_state hide
 	#modifier $mod
-	#separator_symbol "╱"
+	separator_symbol "╱"
 	#separator_symbol ""
 
     colors {
@@ -258,40 +253,39 @@ bar {
         inactive_workspace  $dgray  $dgray  $lgray
         urgent_workspace    $red    $red    $dgray
     }
-    #status_command i3status -c ~/.i3/.i3status.conf
-    #status_command bash ~/.i3/i3pystatus.sh
-    status_command bash ~/coding/misc/statusbar/bar.sh
+    status_command i3status -c ~/.i3/.i3status.conf
+    #status_command bash ~/coding/misc/statusbar/bar.sh
     position top
 }
 
 # DMenu
-bindsym $mod+d exec dmenu_run -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"
-bindsym $mod+Shift+d exec eval `cat ~/scripts/.runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"`
+bindsym $mod+d exec dmenu_run -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"
+bindsym $mod+Shift+d exec eval `cat ~/scripts/.runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"`
 
 # Dunst (notification server)
 #bindsym $mod+Mod1+d exec eval `echo -e 'pause\nresume' | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" | { read x; [[ "$x" == "pause" ]] && killall -SIGUSR1 dunst || killall -SIGUSR2 dunst; }`
-bindsym $mod+Mod1+d exec eval `echo -e 'killall -SIGUSR1 dunst # pause\nkillall -SIGUSR2 dunst # resume' | dmenu -i -l 2 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:"`
+bindsym $mod+Mod1+d exec eval `echo -e 'killall -SIGUSR1 dunst # pause\nkillall -SIGUSR2 dunst # resume' | dmenu -i -l 2 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" -fn "DejaVu Sans Mono-8:normal"`
 
 # Complex commands
-bindsym $mod+c exec eval $(cat ~/scripts/.complex | dmenu -i -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -l 6 -p "command:")
+bindsym $mod+c exec eval $(cat ~/scripts/.complex | dmenu -i -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -l 6 -p "command:" -h 18 -fn "DejaVu Sans Mono-8:normal")
 
 # Dynamic workspaces
 bindsym $mod+z exec i3-input -F 'workspace "%s"' -P 'Workspace: '
-bindsym $mod+Shift+z exec ~/scripts/.workspaces.py -l | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "workspaces:" | ~/scripts/.workspaces.py --
+bindsym $mod+Shift+z exec ~/scripts/.workspaces.py -l | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "workspaces:" -fn "DejaVu Sans Mono-8:normal" | ~/scripts/.workspaces.py --
 
 # Monitor-setting
-bindsym $mod+m exec ~/scripts/.monitors -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen"
+bindsym $mod+m exec ~/scripts/.monitors -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"
 
 # Backlight
-bindsym $mod+b exec eval $(dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "xbacklight =" | echo xbacklight -set $(awk '{print $0}'))
+bindsym $mod+b exec echo | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "xbacklight =" -fn "DejaVu Sans Mono-8:normal" | xbacklight =$(cat)
 
 # Screenlock
 bindsym $mod+l exec "i3lock -e -c 003300 & systemctl suspend"
-bindsym XF86Sleep exec "i3lock -e -c 003300 & systemctl suspend"
+#bindsym XF86Sleep exec "i3lock -e -c 003300 & systemctl suspend"
 
 # Meta-Keys
-bindsym XF86MonBrightnessUp exec xbacklight -inc 2.5 -time 50
-bindsym XF86MonBrightnessDown exec xbacklight -dec 2.5 -time 50
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 2.5 -time 50
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 2.5 -time 50
 
 bindsym XF86AudioRaiseVolume exec amixer sset Master '5%+'
 bindsym XF86AudioLowerVolume exec amixer sset Master '5%-'
