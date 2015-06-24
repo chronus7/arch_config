@@ -97,7 +97,7 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_left_sep = ""
 let g:airline_right_sep = ""
-let g:airline_symbols.branch = 'b'
+let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = 'ro'
 let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
