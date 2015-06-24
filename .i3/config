@@ -22,8 +22,6 @@ exec i3-sensible-terminal -e ". ~/scripts/.i3init"
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
 # For Powerline 8
-# TODO any difference???
-#font pango:DejaVu Sans Mono 8
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -50,8 +48,8 @@ bindsym $mod+Shift+q kill
 # change focus
 bindsym $mod+j focus down
 bindsym $mod+k focus up
-#bindsym $mod+l focus up
-#bindsym $mod+semicolon focus right
+bindsym $mod+l focus right
+bindsym $mod+h focus left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -60,10 +58,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-#bindsym $mod+Shift+j move left
-#bindsym $mod+Shift+k move down
-#bindsym $mod+Shift+l move up
-#bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -72,7 +70,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+h split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -169,18 +168,18 @@ bindsym $mod+Shift+0 move container to workspace $w0
 
 # move to other output
 mode "monitor" {
-	bindsym Left move container to output left
-	bindsym Right move container to output right
-	bindsym Up move container to output up
-	bindsym Down move container to output down
+    bindsym Left move container to output left
+    bindsym Right move container to output right
+    bindsym Up move container to output up
+    bindsym Down move container to output down
 
-	bindsym Shift+Left move workspace to output left
-	bindsym Shift+Right move workspace to output right
-	bindsym Shift+Up move workspace to output up
-	bindsym Shift+Down move workspace to output down
+    bindsym Shift+Left move workspace to output left
+    bindsym Shift+Right move workspace to output right
+    bindsym Shift+Up move workspace to output up
+    bindsym Shift+Down move workspace to output down
 
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+Shift+m mode "monitor"
 # bindsym $mod+o move container to output right
@@ -253,8 +252,8 @@ bar {
         inactive_workspace  $dgray  $dgray  $lgray
         urgent_workspace    $red    $red    $dgray
     }
-    status_command i3status -c ~/.i3/.i3status.conf
-    #status_command bash ~/coding/misc/statusbar/bar.sh
+    #status_command i3status -c ~/.i3/.i3status.conf
+    status_command bash ~/coding/misc/statusbar/bar.sh
     position top
 }
 
@@ -263,7 +262,6 @@ bindsym $mod+d exec dmenu_run -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "
 bindsym $mod+Shift+d exec eval `cat ~/scripts/.runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"`
 
 # Dunst (notification server)
-#bindsym $mod+Mod1+d exec eval `echo -e 'pause\nresume' | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" | { read x; [[ "$x" == "pause" ]] && killall -SIGUSR1 dunst || killall -SIGUSR2 dunst; }`
 bindsym $mod+Mod1+d exec eval `echo -e 'killall -SIGUSR1 dunst # pause\nkillall -SIGUSR2 dunst # resume' | dmenu -i -l 2 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" -fn "DejaVu Sans Mono-8:normal"`
 
 # Complex commands
@@ -280,7 +278,7 @@ bindsym $mod+m exec ~/scripts/.monitors -i -h 18 -nb "#000" -sf "#000" -nf "$lgr
 bindsym $mod+b exec echo | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "xbacklight =" -fn "DejaVu Sans Mono-8:normal" | xbacklight =$(cat)
 
 # Screenlock
-bindsym $mod+l exec "i3lock -e -c 003300 & systemctl suspend"
+bindsym $mod+x exec "i3lock -e -c 003300 & systemctl suspend"
 #bindsym XF86Sleep exec "i3lock -e -c 003300 & systemctl suspend"
 
 # Meta-Keys
