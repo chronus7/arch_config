@@ -12,6 +12,9 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
 - [ ] General configs
   - [ ] .config/
   - [x] .bashrc
+    - [x] .bash_profile
+    - [x] .bash_aliases
+    - [x] .bash_prompt
   - [x] .inputrc
   - [x] .i3/
   - [x] .vimrc
