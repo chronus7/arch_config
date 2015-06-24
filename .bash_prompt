@@ -78,7 +78,7 @@ function _bprompt_wide_line() {
     width=$(($(_bp_columns) - length - 3))
 	spaced=$(python -c "print(' '*$width)")
 
-    PS1="$spaced$git$venv[$(_bp_usercolor)$path$_bp_neutral]\r$(_bp_usercolor)―――$_bp_neutral "
+    PS1="$_bp_neutral$spaced$git$venv[$(_bp_usercolor)$path$_bp_neutral]\r$(_bp_usercolor)―――$_bp_neutral "
     PS2="... "
 }
 
@@ -88,7 +88,7 @@ function _bprompt_simple() {
     gitbr=$(_bp_gitbranch)
     [ -n "$gitbr" ] && gitbr="{$gitbr}"
 
-    PS1="[$(_bp_usercolor)\w$_bp_neutral]$gitbr$venv "
+    PS1="$_bp_neutral[$(_bp_usercolor)\w$_bp_neutral]$gitbr$venv "
     PS2="... "
 }
 
@@ -107,12 +107,8 @@ function _bprompt_maybedouble() {
     [ -n "$dline" ] && dline="$(_bp_color '7;2')$dline$_bp_neutral\n"
 
     default="[$(_bp_usercolor)\w$_bp_neutral] "
-    PS1=$dline$default
+    PS1=$_bp_neutral$dline$default
     PS2="... "
 }
-
-# -- PROMPT
-
-PROMPT_COMMAND=_bprompt_maybedouble
 
 # vim: ft=sh

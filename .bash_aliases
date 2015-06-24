@@ -21,7 +21,7 @@ alias pu='pip install -U \$(pip list | cut -d" " -f1'
 alias myip='curl icanhazip.com'
 alias nspawn='sudo systemd-nspawn -bD'
 alias mntfat='sudo mount -t vfat -o rw,uid=$UID,gid=$UID'
-function mntsmb() { sudo mount -t cifs //DAVETOWER/$1 /mnt/samba -o user=Dave,uid=1000,gid=100; }
+function mntsmb() { sudo mount -t cifs //DAVETOWER/$1 /mnt/samba -o user=Dave,uid=$UID,gid=$UID; }
 function fsof() { sudo file -s $1 | awk -v RS=',' -F';' '/ (FAT|NTFS)/{ print $NF }'; }
 
 # -- programs --

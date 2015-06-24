@@ -15,6 +15,7 @@ source ~/.bash_aliases
 PS1='[\[\e[37;1m\]\w\[\e[m\]] '
 PS2='... '
 source ~/.bash_prompt
+PROMPT_COMMAND=_bprompt_maybedouble
 
 # ---
 # man
