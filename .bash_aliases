@@ -11,7 +11,7 @@ alias fuck='sudo $(history -p \!\!)'
 # -- configs --
 alias vi3='vim ~/.i3/config'
 alias vbm='vim ~/coding/misc/startpage/index.js'
-alias vib='vim ~/coding/misc/startbar/bar.sh'
+alias vib='vim ~/coding/misc/statusbar/bar.sh'
 
 # -- system --
 alias aur='yaourt'
