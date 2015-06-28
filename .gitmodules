@@ -44,3 +44,7 @@
 [submodule "ctrlp.vim"]
 		path = ".vim/bundle/ctrlp.vim"
 		url = "https://github.com/kien/ctrlp.vim.git"
+
+[submodule "vim-systemd-syntax"]
+    path = ".vim/bundle/vim-systemd-syntax"
+    url = "https://github.com/Matt-Deacalion/vim-systemd-syntax.git"

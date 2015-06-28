@@ -16,9 +16,13 @@ export DISPLAY=:0.0
  # v= does this work? =v
 export BROWSER=qutebrowser
 
+# Expand PATH by ~/scripts
+[ -d ~/.scripts/ ] && PATH=${PATH}:~/.scripts/
+
 # SSH-Agent
 type ssh-agent &> /dev/null
-[[ $? -eq 0 ]] && [[ -z "$(pidof ssh-agent)" ]] && eval $(ssh-agent -s)
+[[ $? -eq 0 ]] && [[ -z "$(pgrep ssh-agent)" ]] && eval $(ssh-agent -s)
+#[[ $? -eq 0 ]] && [[ -z "$(pgrep -U $UID ssh-agent)" ]] && eval $(ssh-agent -s)
 
 # .bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc

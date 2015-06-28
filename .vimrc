@@ -20,6 +20,9 @@ Plugin 'tpope/vim-fugitive'
 " CTRL-P
 Plugin 'kien/ctrlp.vim'
 
+" Systemd-syntax
+Plugin 'Matt-Deacalion/vim-systemd-syntax'
+
 " Python-mode
 Plugin 'klen/python-mode'
 
