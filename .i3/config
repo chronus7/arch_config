@@ -204,11 +204,19 @@ mode "resize" {
     bindsym Down resize grow height 10 px or 10 ppt
     bindsym Up resize shrink height 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
     bindsym Shift+Up move up 10px
     bindsym Shift+Down move down 10px
     bindsym Shift+Left move left 10px
     bindsym Shift+Right move right 10px
+    bindsym Shift+k move up 10px
+    bindsym Shift+j move down 10px
+    bindsym Shift+h move left 10px
+    bindsym Shift+l move right 10px
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -282,9 +290,12 @@ bindsym $mod+x exec "i3lock -e -c 003300 & systemctl suspend"
 #bindsym XF86Sleep exec "i3lock -e -c 003300 & systemctl suspend"
 
 # Meta-Keys
-#bindsym XF86MonBrightnessUp exec xbacklight -inc 2.5 -time 50
-#bindsym XF86MonBrightnessDown exec xbacklight -dec 2.5 -time 50
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 -time 25
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 -time 25
 
 bindsym XF86AudioRaiseVolume exec amixer sset Master '5%+'
 bindsym XF86AudioLowerVolume exec amixer sset Master '5%-'
 bindsym XF86AudioMute exec amixer sset Master toggle
+
+# Toggle Touchpad (and only the touchpad, i.e. Thinkpad-keys still work)
+bindsym XF86Search exec synclient -l | grep TouchpadOff | awk '{ print $NF }' | xargs test 0 -eq && synclient TouchpadOff=1 || synclient TouchpadOff=0

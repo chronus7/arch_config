@@ -5,6 +5,7 @@
 # -- general --
 alias ls='ls --color=auto'
 alias lsl='ls -lAhv --color=auto'
+alias la='ls -lhv --color=auto'
 alias cdp='cd -P'
 alias fuck='sudo $(history -p \!\!)'
 
@@ -21,6 +22,7 @@ alias pu='pip install -U \$(pip list | cut -d" " -f1'
 alias myip='curl icanhazip.com'
 alias nspawn='sudo systemd-nspawn -bD'
 alias mntfat='sudo mount -t vfat -o rw,uid=$UID,gid=$UID'
+alias mntntfs='sudo mount -t ntfs-3g -o permissions'
 function mntsmb() { sudo mount -t cifs //DAVETOWER/$1 /mnt/samba -o user=Dave,uid=$UID,gid=$UID; }
 function fsof() { sudo file -s $1 | awk -v RS=',' -F';' '/ (FAT|NTFS)/{ print $NF }'; }
 
