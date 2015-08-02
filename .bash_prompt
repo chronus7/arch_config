@@ -102,7 +102,7 @@ function _bprompt_maybedouble() {
     # battery-level
     # TODO capacity seems not to be standard?!
     b=$(awk '{s+=$1}END{printf "%d", s/NR}' /sys/class/power_supply/BAT*/capacity)
-    [ $b -lt 25 ] && b="[$(awk '{if (NR > 1){printf " | "};printf "BAT%d: %2.2f", NR, $1}' /sys/class/power_supply/BAT*/capacity)]" || b=""
+    [ $b -lt 25 ] && b="[$(awk '{if (NR > 1){printf " | "};printf "BAT%d: %2d%%", NR, $1}' /sys/class/power_supply/BAT*/capacity)]" || b=""
     dline="$b$g$v"
     dline="${dline/\\n/ \\ }"
     [ -n "$dline" ] && dline="$(_bp_color '7;2')$dline$_bp_neutral\n"
