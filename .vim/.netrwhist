@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='~/.vim/bundle/Vundle.vim'
-let g:netrw_dirhist_2='~/coding/haskell'
-let g:netrw_dirhist_3='~/.vim'
-let g:netrw_dirhist_4='~/.vim/ftplugin'
-let g:netrw_dirhist_5='~/.newsbeuter'

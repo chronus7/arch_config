@@ -1,4 +1,7 @@
-" Vundle settings (bundle management)
+" .vimrc
+" vim: foldmethod=marker:foldlevel=0
+
+" Vundle settings (bundle management) {{{
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -22,6 +25,9 @@ Plugin 'kien/ctrlp.vim'
 
 " Systemd-syntax
 Plugin 'Matt-Deacalion/vim-systemd-syntax'
+
+" bbcode
+Plugin 'bbcode'
 
 " Python-mode
 Plugin 'klen/python-mode'
@@ -47,30 +53,40 @@ Plugin 'bling/vim-airline'
 call vundle#end()
 filetype plugin indent on
 " docs ':h vundle'
+" }}}
 
-" Normal settings
-
-syntax on
+" Normal settings {{{
+syntax enable
 set background=dark
-set number
+set number          " display linenumbers
 set mouse=a
-set tabstop=4
+set tabstop=4       " number of visual spaces per TAB
 set shiftwidth=4
-set softtabstop=4
-set expandtab
+set softtabstop=4   " number of spaces per TAB in editing
+set expandtab       " TABs are spaces
 set nowrap
 
-set laststatus=2
 set encoding=utf-8
 set ttimeoutlen=50
 
-" cursorline
+set laststatus=2
+set wildmenu        " visual command-completion (filenames)
+set showcmd         " displays current key-command (bottom-right)
+" }}}
+
+" visual appearence {{{
+"set fillchars+=vert:│
+"hi VertSplit cterm=NONE ctermbg=NONE
+hi VertSplit cterm=NONE ctermbg=8 ctermfg=8
+hi Folded cterm=NONE ctermbg=NONE
+
 set cursorline
 "hi CursorLine cterm=NONE ctermbg=black ctermfg=NONE
 hi CursorLine cterm=NONE ctermbg=black
 hi CursorLineNr ctermbg=black
+" }}}
 
-" Keymappings
+" Keymappings {{{
 " -- select
 imap <S-Up> <Esc>v<Up>
 imap <S-Down> <Esc>v<Down>
@@ -87,13 +103,18 @@ nmap <C-S-Down> ddp
 nmap <C-Up> <C-y>
 nmap <C-Down> <C-e>
 
+" -- movement over visually wrapped lines
+nnoremap j gj
+nnoremap k gk
+
 " -- toggle search-highlighting
 nnoremap <silent> <Space> :set hlsearch! hlsearch?<CR>
 
 " -- cycle tabs with Alt-Tab (<C-Tab> does not work properly in xterm)
 nmap <A-Tab> :tabnext<CR>
+" }}}
 
-" vim-airline
+" plugin-specific settings {{{
 let g:airline_powerline_fonts = 0
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -113,8 +134,9 @@ nmap <leader>e :NERDTreeToggle<CR>
 
 " Tagbar
 nmap <leader>t :TagbarToggle<CR>
+" }}}
 
-" Make
+" Make {{{
 function! s:SilentMakeCommand(cmdline)
 	silent execute ':pedit! '.a:cmdline
 	wincmd P
@@ -139,12 +161,14 @@ nmap <silent> <leader>m :w<CR>:SilentShell make<CR>
 " endfunction
 " command! -complete=shellcmd -nargs=+ SilentSearch call s:SilentSearchCommand(<q-args>)
 " nmap <leader>s :SilentSearch
+" }}}
 
 " Diff
 " http://vimdoc.sourceforge.net/htmldoc/diff.html#diff-original-file
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
-" Spellchecking
+" Spellchecking {{{
 nmap <leader>sd :setlocal spell spelllang=de<CR>
 nmap <leader>se :setlocal spell spelllang=en<CR>
 nmap <leader>so :set nospell<CR>
+" }}}
