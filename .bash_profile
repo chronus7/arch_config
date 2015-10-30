@@ -18,6 +18,7 @@ export BROWSER=qutebrowser
 
 # Expand PATH by ~/scripts
 [ -d ~/.scripts/ ] && PATH=${PATH}:~/.scripts/
+[ -d ~/.cabal/bin/ ] && PATH=${PATH}:~/.cabal/bin/
 
 # SSH-Agent
 type ssh-agent &> /dev/null

@@ -88,7 +88,7 @@ function _bprompt_simple() {
     gitbr=$(_bp_gitbranch)
     [ -n "$gitbr" ] && gitbr="{$gitbr}"
 
-    PS1="$_bp_neutral[$(_bp_usercolor)\w$_bp_neutral]$gitbr$venv "
+    PS1="$_bp_neutral[$(_bp_color '7;2')\h$_bp_neutral $(_bp_usercolor)\w$_bp_neutral]$gitbr$venv "
     PS2="... "
 }
 
@@ -107,9 +107,26 @@ function _bprompt_maybedouble() {
     dline="${dline/\\n/ \\ }"
     [ -n "$dline" ] && dline="$(_bp_color '7;2')$dline$_bp_neutral\n"
 
-    default="[$(_bp_usercolor)\w$_bp_neutral] "
+    default="[$(_bp_color '7;2')\h$_bp_neutral $(_bp_usercolor)\w$_bp_neutral] "
     PS1=$_bp_neutral$dline$default
     PS2="... "
+}
+
+# -- switch prompt
+
+function sp() {
+    if [ -z "$_OLD_PROMPT_COMMAND" ]; then
+        # current prompt is the extended one
+        _OLD_PROMPT_COMMAND=$PROMPT_COMMAND
+        PROMPT_COMMAND=''
+        export PS1="$_bp_neutral[$(_bp_usercolor)\W$_bp_neutral]$gitbr$venv "
+    else
+        # current prompt is the shortened one
+        PROMPT_COMMAND=$_OLD_PROMPT_COMMAND
+        _OLD_PROMPT_COMMAND=''
+    fi
+    export _OLD_PROMPT_COMMAND
+    export PROMPT_COMMAND
 }
 
 # vim: ft=sh

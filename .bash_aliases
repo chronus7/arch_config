@@ -8,6 +8,9 @@ alias lsl='ls -lAhv --color=auto'
 alias la='ls -lhv --color=auto'
 alias cdp='cd -P'
 alias fuck='sudo $(history -p \!\!)'
+alias rcp='rsync --recursive -P'
+alias dir='watch --color -n1 tree -L 2 -C -F'      # shadows dir (which seems equal to ls)
+alias wgit='watch --color -n5 "git status; python -c \"print(\\\"-\\\"*65)\"; git ls"'
 
 # -- configs --
 alias vi3='vim ~/.i3/config'
