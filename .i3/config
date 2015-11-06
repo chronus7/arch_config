@@ -90,6 +90,7 @@ new_float normal
 #assign [class="Chromium"] $w2
 #assign [class="Vlc"] $w5
 #assign [class="MuPDF"] $w5
+for_window [class="MuPDF"] border pixel 3
 for_window [class="Firefox"] floating enable
 for_window [class="qutebrowser"] floating enable
 
@@ -107,12 +108,12 @@ set $w1 "0: cmd "
 set $w2 "1: web "
 set $w3 "2: dev "
 set $w4 "3: dev "
-set $w5 "4: med "
-set $w6 "5: ... "
-set $w7 "6: ..: "
-set $w8 "7: .:. "
-set $w9 "8: .:: "
-set $w0 "9: :.. "
+set $w5 "4: cnt "
+set $w6 "5: med "
+set $w7 "6: ... "
+set $w8 "7: ..: "
+set $w9 "8: .:. "
+set $w0 "9: .:: "
 set $wscr "100: tmp "
 # set $w1 "0:[ t ]"
 # set $w2 "1:[ w ]"
@@ -270,7 +271,7 @@ bindsym $mod+b exec echo -e "15\n25\n50\n75\n100" | dmenu -i -h 18 -nb "#000" -s
 
 # Screenlock
 #bindsym $mod+x exec "i3lock -e -c 003300 & systemctl suspend"
-bindsym $mod+x exec i3lock -i $(tail -n1 ~/.fehbg | cut -d' ' -f4 | cut -d"'" -f2) & systemctl suspend
+bindsym $mod+x exec i3lock -c 003300 -i $(tail -n1 ~/.fehbg | cut -d' ' -f4 | cut -d"'" -f2) & sleep .5 && systemctl suspend
 #bindsym XF86Sleep exec "i3lock -e -c 003300 & systemctl suspend"
 
 # Meta-Keys
