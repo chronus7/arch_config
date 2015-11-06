@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+# -*- coding: utf-8 -*-
+
+# -- aur-package installer for AUR4
+# Inspired by aur.sh to be used as a
+# simple installer of AUR-packages.
+#
+# USE AT OWN RISK!
+#
+# ./aur [makepkg-options] package [packages...]
+# -- Dave J (https://github.com/DaveAtGit)
+
+for package in ${@##-*}; do
+    echo "[AUR] Retrieving '${package}'"
+    git clone https://aur.archlinux.org/${package}.git
+    [ $? != 0 ] && exit 1
+    cd ${package}
+    echo "[AUR] Building '${package}'"
+    makepkg -si ${@##[^\-]*}
+    cd ..
+    echo "[AUR] Cleaning up..."
+    rm -rf ${package}
+    echo "[AUR] Finished '${package}'"
+done
