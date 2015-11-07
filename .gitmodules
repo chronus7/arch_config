@@ -48,3 +48,7 @@
 [submodule "vim-systemd-syntax"]
     path = ".vim/bundle/vim-systemd-syntax"
     url = "https://github.com/Matt-Deacalion/vim-systemd-syntax.git"
+
+[submodule "bbcode"]
+    path = ".vim/bundle/bbcode"
+    url = "https://github.com/vim-scripts/bbcode.git"

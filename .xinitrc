@@ -1,6 +1,6 @@
 xrdb merge ~/.Xresources
 bash ~/.fehbg
-dunst &
+# dunst &
 # start-pulseaudio-x11 &
 xhost +local:
 exec i3
