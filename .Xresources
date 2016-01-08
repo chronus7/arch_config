@@ -4,6 +4,7 @@ XTerm*scrollBar: false
 XTerm*rightScrollBar: false
 ! XTerm*faceName: DejaVu Sans Mono For Powerline
 XTerm*faceName: DejaVu Sans Mono
+XTerm*utf8: 1
 XTerm*faceSize: 10
 XTerm*toolBar: off
 XTerm*transparent: true

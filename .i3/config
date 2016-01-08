@@ -91,12 +91,14 @@ new_float normal
 #assign [class="Vlc"] $w5
 #assign [class="MuPDF"] $w5
 for_window [class="MuPDF"] border pixel 3
-for_window [class="Firefox"] floating enable
+#for_window [class="Firefox"] floating enable
 for_window [class="qutebrowser"] floating enable
 
 # generic workspace switch
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 bindsym $mod+Ctrl+Shift+Right move container to workspace next
 bindsym $mod+Ctrl+Shift+Left move container to workspace prev
@@ -105,7 +107,7 @@ workspace_auto_back_and_forth yes
 
 # workspace names
 set $w1 "0: cmd "
-set $w2 "1: web "
+set $w2 "1: irc "
 set $w3 "2: dev "
 set $w4 "3: dev "
 set $w5 "4: cnt "
@@ -261,10 +263,10 @@ bindsym $mod+c exec eval $(cat ~/scripts/.complex | dmenu -i -nb "#000" -sf "#00
 
 # Dynamic workspaces
 bindsym $mod+z exec i3-input -F 'workspace "%s"' -P 'Workspace: '
-bindsym $mod+Shift+z exec ~/scripts/.workspaces.py -l | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "workspaces:" -fn "DejaVu Sans Mono-8:normal" | ~/scripts/.workspaces.py --
+bindsym $mod+Shift+z exec ~/.scripts/utils/workspaces | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "workspaces:" -fn "DejaVu Sans Mono-8:normal" | xargs i3-msg workspace
 
 # Monitor-setting
-bindsym $mod+m exec ~/scripts/.monitors -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"
+bindsym $mod+m exec ~/.scripts/utils/screens -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVuSansMono-8:normal"
 
 # Backlight
 bindsym $mod+b exec echo -e "15\n25\n50\n75\n100" | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "xbacklight =" -fn "DejaVu Sans Mono-8:normal" | xbacklight =$(cat)
