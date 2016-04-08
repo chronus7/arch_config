@@ -16,6 +16,7 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
     - [x] .bash_aliases
     - [x] .bash_prompt
   - [x] .inputrc
+  - [x] .latexmkrc
   - [x] .i3/
   - [x] .vimrc
   - [x] .vim/
@@ -26,3 +27,4 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
   - [x] dotextract.sh
   - [x] dots.config
 - [x] nearly automated VM-setup
+- [x] AUR-script for initial setups
