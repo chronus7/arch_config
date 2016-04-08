@@ -49,6 +49,7 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " airline
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 filetype plugin indent on
