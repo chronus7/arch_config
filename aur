@@ -8,7 +8,7 @@
 # USE AT OWN RISK!
 #
 # ./aur [makepkg-options] package [packages...]
-# -- Dave J (https://github.com/DaveAtGit)
+# -- Dave J (https://github.com/chronus7)
 
 for package in ${@##-*}; do
     echo "[AUR] Retrieving '${package}'"

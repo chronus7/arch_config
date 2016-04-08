@@ -7,7 +7,7 @@
 # A small tool to quickly symlink dotfiles to their
 # respective places.
 #
-# -- by Dave J (https://github.com/DaveAtGit)
+# -- by Dave J (https://github.com/chronus7)
 
 CE="\e[31;1m"
 CI="\e[33;1m"

@@ -1,7 +1,7 @@
 " Uses xsel to copy visually marked content.
 " Keymapping is <C-c> in visual mode.
 " 
-" Dave J (https://github.com/DaveAtGit)
+" Dave J (https://github.com/chronus7)
 
 function! xsel#yank()
     normal! gv
