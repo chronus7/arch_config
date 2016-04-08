@@ -10,7 +10,7 @@ setleds -D +num -caps -scroll &> /dev/null
 shopt extglob &> /dev/null
 
 # Beep
-setterm -blength 0  # this is for the tty (for xterm is in .xinitrc)
+setterm -blength 0 &> /dev/null     # this is for the tty (for xterm is in .xinitrc)
 
 # Variables
 export EDITOR=vim

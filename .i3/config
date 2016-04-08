@@ -153,6 +153,7 @@ bindsym $mod+Shift+7 move container to workspace $w7
 bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w0
+bindsym $mod+Shift+minus move container to workspace $wscr
 
 # move to other output
 mode "monitor" {
@@ -253,7 +254,7 @@ bar {
 
 # DMenu
 bindsym $mod+d exec dmenu_run -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"
-bindsym $mod+Shift+d exec eval `cat ~/scripts/.runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"`
+bindsym $mod+Shift+d exec eval `cat ~/.scripts/utils/runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"`
 
 # Dunst (notification server)
 bindsym $mod+Mod1+d exec eval `echo -e 'killall -SIGUSR1 dunst # pause\nkillall -SIGUSR2 dunst # resume' | dmenu -i -l 2 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" -fn "DejaVu Sans Mono-8:normal"`
@@ -273,7 +274,7 @@ bindsym $mod+b exec echo -e "15\n25\n50\n75\n100" | dmenu -i -h 18 -nb "#000" -s
 
 # Screenlock
 #bindsym $mod+x exec "i3lock -e -c 003300 & systemctl suspend"
-bindsym $mod+x exec i3lock -c 003300 -i $(tail -n1 ~/.fehbg | cut -d' ' -f4 | cut -d"'" -f2) & sleep .5 && systemctl suspend
+bindsym $mod+x exec ~/.scripts/lock & sleep .5 && systemctl suspend
 #bindsym XF86Sleep exec "i3lock -e -c 003300 & systemctl suspend"
 
 # Meta-Keys

@@ -7,7 +7,7 @@ alias ls='ls --color=auto'
 alias lsl='ls -lAhv --color=auto'   # listed + hidden
 alias ll='ls -lhv --color=auto'     # listed
 alias la='ls -lAhv --color=auto'    # listed + hidden
-alias cdp='cd -P'   # follow symlink
+alias cdp='cd -P'                   # follow symlink
 alias fuck='sudo $(history -p \!\!)'
 alias rcp='rsync --recursive -P'    # recursive copy
 alias dir='watch --color -n1 tree -L 2 -C -F'      # shadows dir (which seems equal to ls)
@@ -34,21 +34,25 @@ function fsof() { sudo file -s $1 | awk -v RS=',' -F';' '/ (FAT|NTFS)/{ print $N
 
 # -- python --
 alias pu='pip install -U $(pip list | cut -d" " -f1)'
+alias pdb='python -m pdb'
 function pyenv() { . "${1:-env}/bin/activate"; }
 
 # -- programs --
 alias xt='xterm -e bash &'
 alias lmk='latexmk -time -pvc -pdf -new-viewer- -view=pdf -output-directory=tex_output -recorder'
+alias scrot='maim'
 function pdf() { mupdf "$@" & }
 function continuous() { while :; do timeout $1 ${*:3}; echo -e "\e[31m$(date +%H:%M:%S) >>>\e[m"; sleep $2; done; }
 function spell() { hunspell -a -m -d ${1:-"en_GB"} "${2:-$1}" | grep "&"; }
 function spellde() { spell "de_DE" $@; }
+function play() { for i in $1; do ffplay -nodisp -autoexit "$i"; done }
+function rplay() { for i in $(curl -L "$1" | grep "<li>" | cut -d'"' -f2); do ffplay -nodisp -autoexit <(curl -L "$1$i"); done }
+function pass-login() { pass $* | tail -n1; }
 
 # -- find --
 alias f='find . -iname'
 alias fr='find . -regex'
 function fstr() { find . -type f -exec grep -n --color=always -E "$1" {} +; }
-#function pdfgrep() { for i in *.pdf; do echo "# -- FILE: $i"; pdftotext "$i" - | grep "$@"; done; }
 function pdfgrep() { for i in ${@:3}; do pdftotext "$i" - | awk "BEGIN{page=1}//{page+=1}/${1}/{ printf \"\033[33m%s\033[m[\033[32m%3d\033[m] %s\n\", \"$i\", page, \$0 }" | grep "${1}" --color; done; }
 
 # -- highlighting --
