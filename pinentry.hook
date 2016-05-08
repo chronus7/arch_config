@@ -1,0 +1,14 @@
+# alpm-hooks(5)
+#
+# Fixes the symlink of pinentry from gtk-2 to qt
+
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = pinentry
+
+[Action]
+Description = Adjusting pinentry-symlink
+Exec = /usr/bin/ln -fs /usr/bin/pinentry-qt /usr/bin/pinentry
+When = PostTransaction
+

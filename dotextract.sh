@@ -113,6 +113,7 @@ function link(){
         s=""
         array_has $k $SUDO_DIRS && s="sudo "
         for f in ${VARS[$k]}; do
+            # TODO might need to create subdirectories?!
             cmd="${s}ln -sfT $(pwd)/$f $k$f"
             if $IS_TEST; then
                 debug $cmd
