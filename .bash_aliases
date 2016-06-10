@@ -29,7 +29,7 @@ alias myip='curl icanhazip.com'
 alias nspawn='sudo systemd-nspawn -bD'
 alias mntfat='sudo mount -t vfat -o rw,uid=$UID,gid=users'
 alias mntntfs='sudo mount -t ntfs-3g -o permissions'
-function mntsmb() { sudo mount -t cifs //DAVETOWER/$1 /mnt/samba -o user=Dave,uid=$UID,gid=$UID; }
+function mntsmb() { sudo mount -t cifs //norloch/$1 /mnt/samba -o user=Dave,uid=$UID,gid=$UID; }
 function fsof() { sudo file -s $1 | awk -v RS=',' -F';' '/ (FAT|NTFS)/{ print $NF }'; }
 
 # -- python --
@@ -47,6 +47,7 @@ function spell() { hunspell -a -m -d ${1:-"en_GB"} "${2:-$1}" | grep "&"; }
 function spellde() { spell "de_DE" $@; }
 function play() { for i in $1; do ffplay -nodisp -autoexit "$i"; done }
 function rplay() { for i in $(curl -L "$1" | grep "<li>" | cut -d'"' -f2); do ffplay -nodisp -autoexit <(curl -L "$1$i"); done }
+alias ffmpd='ffplay http://norloch:9999'
 function pass-login() { pass $* | tail -n1; }
 
 # -- find --

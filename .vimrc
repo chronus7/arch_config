@@ -60,6 +60,7 @@ filetype plugin indent on
 syntax enable
 set background=dark
 set number          " display linenumbers
+set relativenumber  " display linenumbers relative to current line
 set mouse=a
 set tabstop=4       " number of visual spaces per TAB
 set shiftwidth=4
@@ -139,12 +140,12 @@ nmap <leader>t :TagbarToggle<CR>
 
 " Make {{{
 function! s:SilentMakeCommand(cmdline)
-	silent execute ':pedit! '.a:cmdline
-	wincmd P
-	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-	silent execute "$read!".a:cmdline
-	" setlocal nomodifiable
-	wincmd p
+    silent execute ':pedit! '.a:cmdline
+    wincmd P
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+    silent execute "$read!".a:cmdline
+    " setlocal nomodifiable
+    wincmd p
 endfunction
 command! -complete=shellcmd -nargs=+ SilentShell call s:SilentMakeCommand(<q-args>)
 nmap <silent> <leader>m :w<CR>:SilentShell make<CR>

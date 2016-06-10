@@ -14,5 +14,6 @@ let g:pymode_run = 1
 let g:pymode_lint = 1
 let g:pymode_lint_on_write = 1
 let g:pymode_lint_message = 1
+let g:pymode_lint_checkers = ['pep8', 'mccabe'] " pylint and pyflakes throw errors...
 " let g:pymode_lint_ignore = ...
 let g:pymode_syntax = 1

@@ -109,13 +109,13 @@ workspace_auto_back_and_forth yes
 set $w1 "0: cmd "
 set $w2 "1: irc "
 set $w3 "2: dev "
-set $w4 "3: dev "
+set $w4 "3: edu "
 set $w5 "4: cnt "
 set $w6 "5: med "
 set $w7 "6: ... "
 set $w8 "7: ..: "
 set $w9 "8: .:. "
-set $w0 "9: .:: "
+set $w0 "9: log "
 set $wscr "100: tmp "
 # set $w1 "0:[ t ]"
 # set $w2 "1:[ w ]"
@@ -233,13 +233,12 @@ client.urgent            $red    $red    $dgray  $red
 # finds out, if available)
 bar {
     font pango:DejaVu Sans Mono 8
-	# For Powerline 8
-	strip_workspace_numbers yes
+    strip_workspace_numbers yes
 
-	#mode hide
-	#hidden_state hide
-	#modifier $mod
-	separator_symbol "╱"
+    #mode hide
+    #hidden_state hide
+    #modifier $mod
+    separator_symbol "╱"
 
     colors {
         focused_workspace   $lgreen $lgreen $dgreen
