@@ -107,17 +107,21 @@ function read_config() {
 
 function link(){
     debug "Starting to link stuff."
-    $IS_TEST && addline "Not really: Testing only prints all this."
+    $IS_TEST && addline "Not really: Testing mode only prints all this."
 
     for k in $VARS_KEYS; do
         s=""
         array_has $k $SUDO_DIRS && s="sudo "
         for f in ${VARS[$k]}; do
-            # TODO might need to create subdirectories?!
+            cmdDir=''
+            [ -d "${k/\~/${HOME}}" ] || cmdDir="${s}mkdir -p \"$k\""
             cmd="${s}ln -sfT $(pwd)/$f $k$f"
             if $IS_TEST; then
+                [ -n "$cmdDir" ] && debug $cmdDir
                 debug $cmd
             else
+                [ -n "$cmdDir" ] && debug $cmdDir
+                eval $cmdDir
                 debug $cmd
                 eval $cmd
             fi
