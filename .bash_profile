@@ -23,9 +23,14 @@ export BROWSER=qutebrowser
 [ -d ~/.cabal/bin/ ] && PATH=${PATH}:~/.cabal/bin/
 
 # SSH-Agent
-type ssh-agent &> /dev/null
-[[ $? -eq 0 ]] && [[ -z "$(pgrep ssh-agent)" ]] && eval $(ssh-agent -s)
+# -- replaced by gpg-agent
+#type ssh-agent &> /dev/null
+#[[ $? -eq 0 ]] && [[ -z "$(pgrep ssh-agent)" ]] && eval $(ssh-agent -s)
 #[[ $? -eq 0 ]] && [[ -z "$(pgrep -U $UID ssh-agent)" ]] && eval $(ssh-agent -s)
+
+# GPG-Agent
+unset SSH_AGENT_PID
+[ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ] && export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 
 # .bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc

@@ -18,6 +18,11 @@ source ~/.bash_prompt
 PROMPT_COMMAND=_bprompt_maybedouble
 
 # ---
+# gpg
+# ---
+export GPG_TTY=$(tty)
+
+# ---
 # man
 # ---
 man() {

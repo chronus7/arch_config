@@ -38,6 +38,7 @@ function fsof() { sudo file -s $1 | awk -v RS=',' -F';' '/ (FAT|NTFS)/{ print $N
 alias pu='pip install -U $(pip list | cut -d" " -f1)'
 alias pdb='python -m pdb'
 function pyenv() { . "${1:-env}/bin/activate"; }
+function pyc() { python <<< "print($@)"; }
 
 # -- programs --
 alias xt='xterm -e bash &'
