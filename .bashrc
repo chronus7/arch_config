@@ -21,6 +21,7 @@ PROMPT_COMMAND=_bprompt_maybedouble
 # gpg
 # ---
 export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # ---
 # man
