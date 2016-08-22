@@ -1,6 +1,8 @@
 # alpm-hooks(5)
 #
 # Fixes the symlink of pinentry from gtk-2 to qt
+# : Can also be done by just setting 'pinentry-program'
+#   in the users gpg-agent.conf.
 
 [Trigger]
 Operation = Upgrade

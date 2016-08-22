@@ -14,7 +14,7 @@ alias dir='watch --color -n1 tree -L 2 -C -F'      # shadows dir (which seems eq
 alias wgit='watch --color -n5 "git status; python -c \"print(\\\"-\\\"*int(\\\"$(stty size)\\\".split()[1]))\"; git ls --all --date-order"'
 
 # -- configs --
-alias vi3='vim ~/.i3/config'
+alias vi3='vim ~/.config/i3/config'
 alias vbc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
 alias vbm='vim ~/coding/misc/startpage/bookmarks.js'

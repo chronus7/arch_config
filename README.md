@@ -11,13 +11,20 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
 
 - [ ] General configs
   - [ ] .config/
+    - [x] i3/config
+    - [x] dunstrc
+    - [x] gpg-agent.service
+    - [x] qutebrowser.conf
+      - [ ] keys.conf
+  - [ ] .gnupg
+    - [ ] gpg.conf
+    - [ ] gpg-agent.conf
   - [x] .bashrc
     - [x] .bash_profile
     - [x] .bash_aliases
     - [x] .bash_prompt
   - [x] .inputrc
   - [x] .latexmkrc
-  - [x] .i3/
   - [x] .vimrc
   - [x] .vim/
   - [x] .Xresources

@@ -51,7 +51,7 @@ Configuration File:
         directory for the upcoming files and directories.
 
         ${CC}sudo${CN} indicates, whether the symlinks
-        have to be done, using sudo.
+        have to be made, using sudo.
 
         There are no alterations in the format allowed.
         This means, you cannot put spaces around '${CC}=${CN}'
@@ -115,7 +115,7 @@ function link(){
         for f in ${VARS[$k]}; do
             cmdDir=''
             [ -d "${k/\~/${HOME}}" ] || cmdDir="${s}mkdir -p \"$k\""
-            cmd="${s}ln -sfT $(pwd)/$f $k$f"
+            cmd="${s}ln -sfT $(pwd)/$f $k$(basename $f)"
             if $IS_TEST; then
                 [ -n "$cmdDir" ] && debug $cmdDir
                 debug $cmd
