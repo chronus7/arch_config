@@ -1,8 +1,19 @@
-Xft*antialias: true
-Xft*autohint: true
+! -- scroll
 XTerm*scrollBar: false
 XTerm*rightScrollBar: false
-! XTerm*faceName: DejaVu Sans Mono For Powerline
+
+! -- misc
+! see https://lukas.zapletalovi.com/2013/07/hidden-gems-of-xterm.html
+XTerm*fullscreen: never
+XTerm*bellIsUrgent: true
+XTerm*on3Clicks: regex [^ \n]+
+XTerm*on4Clicks: regex ((ftp|http)s?|file)://([[:alnum:]._-~/?=@#+,!%])+
+XTerm*translations: #override Shift <Btn1Up>: exec-formatted("qutebrowser --target tab '%t'", PRIMARY)
+
+! -- font-rendering
+Xft*antialias: true
+Xft*autohint: true
+
 XTerm*faceName: DejaVu Sans Mono
 XTerm*utf8: 1
 XTerm*faceSize: 10

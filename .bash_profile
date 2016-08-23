@@ -14,7 +14,7 @@ setterm -blength 0 &> /dev/null     # this is for the tty (for xterm is in .xini
 
 # Variables
 export EDITOR=vim
-export TERM=xterm
+export TERM=xterm-256color
 export DISPLAY=:0.0
 export BROWSER=qutebrowser
 
