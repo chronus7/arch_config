@@ -12,6 +12,7 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
 - [ ] General configs
   - [ ] .config/
     - [x] i3/config
+    - [x] git/config
     - [x] dunstrc
     - [x] gpg-agent.service
     - [x] qutebrowser.conf

@@ -1,0 +1,9 @@
+[push]
+    default = simple
+
+[alias]
+    st = status -bs
+    ls = log --graph --format='%Cred%d %Cgreen%s%C()%n (%C(auto)%h) %Cred%an %C()[%Cred%ae%C()]%n [%C(yellow)%cr%C()] %ci' --date-order
+
+[include]
+    path = user
