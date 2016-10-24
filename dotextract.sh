@@ -114,7 +114,7 @@ function link(){
         array_has $k $SUDO_DIRS && s="sudo "
         for f in ${VARS[$k]}; do
             cmdDir=''
-            [ -d "${k/\~/${HOME}}" ] || cmdDir="${s}mkdir -p \"$k\""
+            [ -d "${k/\~/${HOME}}" ] || cmdDir="${s}mkdir -p \"${k/\~/${HOME}}\""
             cmd="${s}ln -sfT $(pwd)/$f $k$(basename $f)"
             if $IS_TEST; then
                 [ -n "$cmdDir" ] && debug $cmdDir

@@ -114,6 +114,11 @@ nnoremap <silent> <Space> :set hlsearch! hlsearch?<CR>
 
 " -- cycle tabs with Alt-Tab (<C-Tab> does not work properly in xterm)
 nmap <A-Tab> :tabnext<CR>
+
+" -- xclip in selection-mode
+" TODO not perfect yet
+vnoremap <C-c> :w !xclip -i<CR><CR>
+vnoremap <C-v> :r !xclip -o<CR><CR>
 " }}}
 
 " plugin-specific settings {{{

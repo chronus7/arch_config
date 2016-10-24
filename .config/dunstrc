@@ -21,7 +21,10 @@
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
-    format = "%p <b>%s</b> | <i>%a</i>\n%b"
+    # for right-aligned notifications:
+    #format = "%p <b>%s</b> | <i>%a</i>\n%b"
+    # for left-aligned notifications:
+    format = "<i>%a</i> | <b>%s</b> %p\n%b"
 
     # Sort messages by urgency.
     sort = yes
@@ -31,7 +34,7 @@
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = right
+    alignment = left
 
     # The frequency with wich text that is longer than the notification
     # window allows bounces back and forth.
@@ -64,7 +67,11 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "500x5-0+19"
+
+    # top right below bar:
+    #geometry = "500x5-0+19"
+    # bottom left:
+    geometry = "500x5+0-0"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -73,7 +80,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 25
+    transparency = 10
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -111,10 +118,10 @@
     # This adds empty space above and under the text.
     line_height = 0
 
-    # Draw a line of "separatpr_height" pixel height between two
+    # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 1
+    separator_height = 0
 
     # Padding between text and separator.
     padding = 8

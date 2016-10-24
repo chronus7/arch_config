@@ -8,7 +8,8 @@ XTerm*fullscreen: never
 XTerm*bellIsUrgent: true
 XTerm*on3Clicks: regex [^ \n]+
 XTerm*on4Clicks: regex ((ftp|http)s?|file)://([[:alnum:]._-~/?=@#+,!%])+
-XTerm*translations: #override Shift <Btn1Up>: exec-formatted("qutebrowser --target tab '%t'", PRIMARY)
+! TODO throws warnings when doing xt
+!XTerm*translations: #override Shift <Btn1Up>: exec-formatted("qutebrowser --target tab '%t'", PRIMARY)
 
 ! -- font-rendering
 Xft*antialias: true

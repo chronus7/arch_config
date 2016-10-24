@@ -52,7 +52,7 @@ function spellde() { spell "de_DE" $@; }
 function play() { for i in $1; do ffplay -nodisp -autoexit "$i"; done }
 function rplay() { for i in $(curl -L "$1" | grep "<li>" | cut -d'"' -f2); do ffplay -nodisp -autoexit <(curl -L "$1$i"); done }
 alias ffmpd='ffplay http://norloch:9999'
-function pass-login() { pass $* | tail -n1; }
+function pass-get() { pass show $2 | grep $1 | sed "s/$1://"; }
 
 # -- find --
 alias f='find . -iname'
