@@ -36,7 +36,7 @@ function mntsmb() { sudo mount -t cifs //norloch/$1 /mnt/samba -o user=Dave,uid=
 function fsof() { sudo file -s $1 | awk -v RS=',' -F';' '/ (FAT|NTFS)/{ print $NF }'; }
 
 # -- python --
-alias pu='pip install -U $(pip list | cut -d" " -f1)'
+alias pu='pip install -U $(pip list --format=legacy | cut -d" " -f1)'
 alias pdb='python -m pdb'
 function pyenv() { . "${1:-env}/bin/activate"; }
 function pyc() { python <<< "print($@)"; }
