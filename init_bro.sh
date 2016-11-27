@@ -67,7 +67,7 @@ VIRTUALBOX=true     # installs packages and enables service
 
 AUR=(cower pacaur)
 AUR_INSTALLER='pacaur -S --needed --noedit --noconfirm'
-AUR_INSTALL=(clion)
+AUR_INSTALL=(clion clion-jre clion-cmake clion-gdb clion-lldb)  # just to make sure...
 
 # TODO make the output variable
 
@@ -275,7 +275,7 @@ arch-chroot /mnt <<CMD
 
         info Adding docker install script.
         echo "#!/usr/bin/env sh
-        sudo pacman --needed --noconfirm -S docker 
+        sudo pacman --needed --noconfirm -S docker
         sudo systemctl enable docker
         sudo gpasswd -a \\\\\$(whoami) docker
         reboot" > docker.install
@@ -289,7 +289,7 @@ arch-chroot /mnt <<CMD
         info Bro.
         echo "#!/usr/bin/env sh
         sudo pacman -S --needed --noconfirm libpcap cmake swig bind python python2
-        pacaur -S --needed --noedit --noconfirm actor-framework 
+        pacaur -S --needed --noedit --noconfirm actor-framework
         git clone --recursive https://github.com/bro/bro
         cd bro
         git checkout topic/mfischer/deep-cluster
