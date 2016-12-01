@@ -296,6 +296,10 @@ arch-chroot /mnt <<CMD
         git submodule update
         cd aux/broker
         git checkout topic/mfischer/broker-multihop
+        git submodule update
+        cd ../broctl
+        git checkout topic/mfischer/broctl-broker
+        git submodule update
         cd ../..
         ./configure --with-python=/usr/bin/python2
         make
