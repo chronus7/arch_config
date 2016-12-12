@@ -50,7 +50,7 @@ function _bp_pyvenv() {
 
 function _bp_gitbranch() {
 # :: returns the current git branch
-    local b=$(git branch 2>&1 | awk '/\*/{print $2}')
+    local b=$(git branch 2>&1 | sed -n '/\* /s///p')
     if [ $? -eq 0 ]; then
         echo ${b/\*/}
     fi

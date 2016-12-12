@@ -13,6 +13,11 @@ alias rcp='rsync --recursive -P'    # recursive copy
 alias dir='watch --color -n1 tree -L 2 -C -F'      # shadows dir (which seems equal to ls)
 alias wgit='watch --color -n5 "git status; python -c \"print(\\\"-\\\"*int(\\\"$(stty size)\\\".split()[1]))\"; git ls --all --date-order"'
 alias gitst='diff -y <(find ~ -type d -name .git -execdir git st {} +) <(find ~ -type d -name .git)'
+function gitlog() { for i in "$@"; do
+    [ -d "$i" ] || continue
+    python -c "print('{:-<{}}'.format('-- $i ', $(stty size | cut -d' ' -f2)))";
+    git -C "$i" log -a --author=Dave --since="1 week ago" --format="%ar | %C(yellow)%s%Creset%d"
+done; }
 
 # -- configs --
 alias vi3='vim ~/.config/i3/config'
