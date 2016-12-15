@@ -16,7 +16,7 @@ alias gitst='diff -y <(find ~ -type d -name .git -execdir git st {} +) <(find ~ 
 function gitlog() { for i in "$@"; do
     [ -d "$i" ] || continue
     python -c "print('\033[31;1m{:-<{}}\033[m'.format('-- $i ', $(stty size | cut -d' ' -f2)))";
-    git -C "$i" log --branches --author="$(git config --get user.name)" --since="1 week ago" --format="%cd: %cr | %C(yellow)%s%Creset%d" --date="format:%a"
+    git -C "$i" log --branches --author="$(git config --get user.name)" --since="1 week ago" --format="%cd | %h | %C(yellow)%s%Creset%d" --date="format:%y-%m-%d / %Hh / %a"
 done; }
 
 # -- configs --

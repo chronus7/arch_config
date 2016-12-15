@@ -132,6 +132,9 @@ function info() { echo -e "\\e[31m>> $@\\e[m"; }
 
 # :: ROUTINE
 
+# TODO set variable
+set -e
+
 [ -z "$USER" ] && { info "Normal user:"; read USER; }   # ask here, so no further interaction may be required
 
 info Partitioning.
@@ -163,6 +166,8 @@ genfstab -p /mnt >> /mnt/etc/fstab
 
 info Chrooting.
 arch-chroot /mnt <<CMD
+    set -e
+
     function info() { echo -e "\\e[31m>> \$@\\e[m"; }
     alias install="pacman -S --needed --noconfirm"
 
@@ -204,7 +209,7 @@ arch-chroot /mnt <<CMD
     if $VIRTUALBOX; then
         info Virtualbox.
         install virtualbox-guest-modules-arch virtualbox-guest-utils
-        systemctl enable vboservice
+        systemctl enable vboxservice
     fi
 
     if $ENABLE_SUDO; then
@@ -219,6 +224,8 @@ arch-chroot /mnt <<CMD
 
     info $USER settings.
     su $USER <<SU
+        set -e
+
         function info() { echo -e "\\e[31m>> \\\$@\\e[m"; }
         cd /home/$USER
         export LANG=$LOCALE
@@ -230,7 +237,7 @@ arch-chroot /mnt <<CMD
         sed -i 's/maybedouble/simple/' arch_config/.bashrc
         if $VIRTUALBOX; then
             info "  setting virtualbox up."
-            sed -i '\$iVBoxClient-all' arch_config/.xinitrc
+            sed -i '\\\$iVBoxClient-all' arch_config/.xinitrc
         fi
         info "  changing wm/de."
         sed -i 's/i3/startxfce4/' arch_config/.xinitrc
@@ -243,7 +250,7 @@ arch-chroot /mnt <<CMD
         sed -i '/gpg/d' arch_config/.bashrc
         sed -i 's/qutebrowser/firefox/' arch_config/.bash_profile
         sed -i 's/^#type/type/' arch_config/.bash_profile
-        sed -i 's/^#\(\[\[[^U]\+U\)/\1/' arch_config/.bash_profile
+        sed -i 's/^#\\\(\\\[\\\[[^U]\\\+U\\\)/\\\1/' arch_config/.bash_profile
         sed -i '/SSH/d' arch_config/.bash_profile
         info "  bootstrapping."
         ./arch_config/dotextract.sh
@@ -314,5 +321,5 @@ CMD
 
 info Restarting.
 # TODO recursive unmount!
-unmount /mnt
+umount /mnt
 reboot
