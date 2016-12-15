@@ -15,8 +15,8 @@ alias wgit='watch --color -n5 "git status; python -c \"print(\\\"-\\\"*int(\\\"$
 alias gitst='diff -y <(find ~ -type d -name .git -execdir git st {} +) <(find ~ -type d -name .git)'
 function gitlog() { for i in "$@"; do
     [ -d "$i" ] || continue
-    python -c "print('{:-<{}}'.format('-- $i ', $(stty size | cut -d' ' -f2)))";
-    git -C "$i" log -a --author=Dave --since="1 week ago" --format="%ar | %C(yellow)%s%Creset%d"
+    python -c "print('\033[31;1m{:-<{}}\033[m'.format('-- $i ', $(stty size | cut -d' ' -f2)))";
+    git -C "$i" log --branches --author="$(git config --get user.name)" --since="1 week ago" --format="%cd: %cr | %C(yellow)%s%Creset%d" --date="format:%a"
 done; }
 
 # -- configs --

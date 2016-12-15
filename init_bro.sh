@@ -154,6 +154,7 @@ Server = http://ftp.spline.inf.fu-berlin.de/mirrors/archlinux/$repo/os/$arch
 Server = http://ftp.uni-hannover.de/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
 info Installing base.
+pacman -Syy
 # TODO make /mnt variable
 pacstrap /mnt $PACSTRAP
 
@@ -164,6 +165,9 @@ info Chrooting.
 arch-chroot /mnt <<CMD
     function info() { echo -e "\\e[31m>> \$@\\e[m"; }
     alias install="pacman -S --needed --noconfirm"
+
+    info Updating packagelist.
+    pacman -Syy
 
     info Hostname.
     echo $HOSTNAME > /etc/hostname
