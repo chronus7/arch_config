@@ -275,11 +275,11 @@ arch-chroot /mnt <<CMD
         info Adding git stub.
         echo "[user]
         name = $USER
-        email = $USER@host" > .config/git/user
+        email = $USER@$HOSTNAME" > .config/git/user
 
         info Adding setup script.
         echo "#!/usr/bin/env sh
-        ssh-keygen -t ed25519 -C \\\\\$(hostname) -f ~/.ssh/id_ed25519
+        ssh-keygen -t ed25519 -C $HOSTNAME -f ~/.ssh/id_ed25519
         echo Copy the following to Gitlab.
         cat ~/.ssh/id_ed25519.pub" > key.install
         chmod +x key.install
@@ -288,7 +288,7 @@ arch-chroot /mnt <<CMD
         echo "#!/usr/bin/env sh
         sudo pacman --needed --noconfirm -S docker
         sudo systemctl enable docker
-        sudo gpasswd -a \\\\\$(whoami) docker
+        sudo gpasswd -a $USER docker
         reboot" > docker.install
         chmod +x docker.install
 
