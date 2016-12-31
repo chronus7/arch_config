@@ -94,6 +94,7 @@ new_float normal
 for_window [class="MuPDF"] border pixel 3
 #for_window [class="Firefox"] floating enable
 for_window [class="qutebrowser"] floating enable
+hide_edge_borders smart   # since 4.13
 
 # generic workspace switch
 bindsym $mod+Ctrl+Right workspace next
@@ -233,6 +234,7 @@ client.urgent            $red    $red    $dgray  $red
 bar {
     font pango:DejaVu Sans Mono 8
     strip_workspace_numbers yes
+    tray_output none
 
     #mode hide
     #hidden_state hide
