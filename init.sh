@@ -24,14 +24,15 @@ USER_SHELL='/bin/bash'
 # TODO USER password?
 # TODO ROOT password?
 
-PACKAGES=(grub base-devel git vim xorg xterm xorg-xinit i3 feh bash-completion ttf-dejavu polkit transset-df)
+PACKAGES=(grub base-devel git vim xorg xterm xorg-xinit i3 feh bash-completion ttf-dejavu polkit transset-df qutebrowser)
 VIRTUALBOX=true     # installs packages and enables service
 
 # TODO maybe make dotfiles variable
 
+# TODO switch over to pacaur
 AUR=(package-query yaourt)
-AUR_INSTALLER='yaourt --noconfirm'
-AUR_INSTALL=(dmenu-xft-mouse-height-fuzzy-history qutebrowser)
+AUR_INSTALLER='yaourt -Si --noconfirm'
+AUR_INSTALL=(dmenu-xft-mouse-height-fuzzy-history)
 
 # TODO make the output variable
 
@@ -100,6 +101,9 @@ function info() { echo -e "\\e[31m>> $@\\e[m"; }
 
 # :: ROUTINE
 
+# TODO make optional
+set -e
+
 [ -z "$USER" ] && { info "Normal user:"; read USER; }   # ask here, so no further interaction may be required
 
 info Partitioning.
@@ -125,6 +129,7 @@ genfstab -p /mnt >> /mnt/etc/fstab
 
 info Chrooting.
 arch-chroot /mnt <<CMD
+    set -e
     function info() { echo -e "\\e[31m>> \$@\\e[m"; }
     alias install="pacman -S --noconfirm"
 
@@ -132,7 +137,7 @@ arch-chroot /mnt <<CMD
     echo $HOSTNAME > /etc/hostname
 
     info Localtime.
-    ln -s $TIMEZONE /etc/localtime
+    ln -sf $TIMEZONE /etc/localtime
 
     info Locales.
     echo "$LOCALE UTF-8" > /etc/locale.gen
@@ -162,7 +167,7 @@ arch-chroot /mnt <<CMD
     if $VIRTUALBOX; then
         info Virtualbox.
         install virtualbox-guest-modules-arch virtualbox-guest-utils
-        systemctl enable vboservice
+        systemctl enable vboxservice
     fi
 
     if $ENABLE_SUDO; then
@@ -177,6 +182,7 @@ arch-chroot /mnt <<CMD
 
     info $USER settings.
     su $USER <<SU
+        set -e
         function info() { echo -e "\\e[31m>> \$@\\e[m"; }
         cd /home/$USER
         export LANG=$LOCALE
@@ -188,7 +194,7 @@ arch-chroot /mnt <<CMD
         sed -i 's/maybedouble/simple/' arch_config/.bashrc
         if $VIRTUALBOX; then
             info "  setting virtualbox up."
-            sed -i '\$iVBoxClient-all' arch_config/.xinitrc
+            sed -i '\\\$iVBoxClient-all' arch_config/.xinitrc
         fi
         info "  bootstrapping."
         ./arch_config/dotextract.sh
@@ -202,6 +208,5 @@ SU
 CMD
 
 info Restarting.
-# TODO recursive unmount!
-unmount /mnt
+umount -R /mnt
 reboot
