@@ -31,7 +31,7 @@ VIRTUALBOX=true     # installs packages and enables service
 
 # TODO switch over to pacaur
 AUR=(package-query yaourt)
-AUR_INSTALLER='yaourt -Si --noconfirm'
+AUR_INSTALLER='yaourt -S --noconfirm'
 AUR_INSTALL=(dmenu-xft-mouse-height-fuzzy-history)
 
 # TODO make the output variable
