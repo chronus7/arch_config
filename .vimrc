@@ -74,18 +74,19 @@ set nowrap
 set encoding=utf-8
 set ttimeoutlen=50
 
+" compatibility with older versions
+set nocompatible
+set autoindent
+set modeline
+set modelines=3
+
+" statusbar
 set laststatus=2
 set wildmenu        " visual command-completion (filenames)
 set showcmd         " displays current key-command (bottom-right)
 
 set splitbelow      " set new horizontal splits below (instead of above)
 set splitright      " set new vertical splits right (instead of left)
-
-" compatibility with older versions
-set nocompatible
-set autoindent
-set modeline
-set modelines=3
 
 " }}}
 
