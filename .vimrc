@@ -84,6 +84,8 @@ set splitright      " set new vertical splits right (instead of left)
 " compatibility with older versions
 set nocompatible
 set autoindent
+set modeline
+set modelines=3
 
 " }}}
 
