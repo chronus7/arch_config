@@ -20,10 +20,10 @@ PROMPT_COMMAND=_bprompt_maybedouble
 # ---
 # gpg
 # ---
-if [ "$UID" != "0" ]; then
-    export GPG_TTY=$(tty)
-    gpg-connect-agent updatestartuptty /bye >/dev/null
-fi
+# if [ "$UID" != "0" ]; then
+#     export GPG_TTY=$(tty)
+#     gpg-connect-agent updatestartuptty /bye >/dev/null
+# fi
 
 # ---
 # man

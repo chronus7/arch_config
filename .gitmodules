@@ -56,3 +56,9 @@
 [submodule "bbcode"]
     path = ".vim/bundle/bbcode"
     url = "https://github.com/vim-scripts/bbcode.git"
+[submodule ".vim/bundle/Vundle.vim"]
+	path = .vim/bundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim.git
+[submodule ".vim/bundle/unicode.vim"]
+	path = .vim/bundle/unicode.vim
+	url = https://github.com/chrisbra/unicode.vim

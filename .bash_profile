@@ -15,6 +15,7 @@ setterm -blength 0 &> /dev/null     # this is for the tty (for xterm is in .xini
 # Variables
 export EDITOR=vim
 export TERM=xterm-256color
+# TODO move, so it is only set upon X11-start?!
 export DISPLAY=:0.0
 export BROWSER=qutebrowser
 
@@ -29,6 +30,10 @@ export BROWSER=qutebrowser
 #[[ $? -eq 0 ]] && [[ -z "$(pgrep -U $UID ssh-agent)" ]] && eval $(ssh-agent -s)
 
 # GPG-Agent
+if [ "$UID" != "0" ]; then
+    export GPG_TTY=$(tty)
+    gpg-connect-agent updatestartuptty /bye >/dev/null
+fi
 unset SSH_AGENT_PID
 [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ] && export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 

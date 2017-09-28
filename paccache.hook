@@ -1,0 +1,14 @@
+# alpm-hooks(5)
+#
+# Cleanup cache after any upgrade
+
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Cleaning package cache
+Exec = /usr/bin/paccache -rk3
+# to clear removed ones as well: paccache -rk3 -ruk0
+When = PostTransaction

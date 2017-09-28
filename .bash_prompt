@@ -50,10 +50,12 @@ function _bp_pyvenv() {
 
 function _bp_gitbranch() {
 # :: returns the current git branch
-    local b=$(git branch 2>&1 | sed -n '/\* /s///p')
-    if [ $? -eq 0 ]; then
-        echo ${b/\*/}
-    fi
+    source /usr/share/git/completion/git-prompt.sh
+    __git_ps1 '%s'
+    # local b=$(git branch 2>&1 | sed -n '/\* /s///p')
+    # if [ $? -eq 0 ]; then
+    #     echo ${b/\*/}
+    # fi
 }
 
 # -- ssh
@@ -113,7 +115,7 @@ function _bprompt_maybedouble() {
     # battery-level
     # TODO capacity seems not to be standard?!
     local b=$(awk '{s+=$1}END{printf "%d", s/NR}' /sys/class/power_supply/BAT*/capacity 2> /dev/null)
-    [ $b -lt 15 ] && b="[$(awk '{if (NR > 1){printf " | "};printf "BAT%d: %2d%%", NR, $1}' /sys/class/power_supply/BAT*/capacity)]" || b=""
+    [ $b -lt 10 ] && b="[$(awk '{if (NR > 1){printf " | "};printf "BAT%d: %2d%%", NR, $1}' /sys/class/power_supply/BAT*/capacity)]" || b=""
     local dline="$b$g$v"
     dline="${dline/\\n/ \\ }"
     [ -n "$dline" ] && dline="$(_bp_color '7;2')$dline$_bp_neutral\n"

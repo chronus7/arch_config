@@ -3,7 +3,14 @@
 
 [alias]
     st = status -bs
-    ls = log --graph --format='%Cred%d %Cgreen%s%C()%n (%C(auto)%h) %Cred%an %C()[%Cred%ae%C()]%n [%C(yellow)%cr%C()] %ci' --date-order
+    ls = log --graph --format='%C(auto)%d %Cgreen%s%Creset%n (%C(auto)%h) %Cred%an %Creset[%Cblue%ae%Creset]%n [%C(yellow)%cr%Creset] %Cblue%ci%Creset' --date-order
 
 [include]
     path = user
+
+[url "https://aur.archlinux.org/"]
+    insteadOf = aur://
+[url "https://github.com/"]
+    insteadOf = gh://
+[url "git@github.com:"]
+    insteadOf = gg://

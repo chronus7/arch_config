@@ -33,6 +33,7 @@ For me, this repo is mainly a backup and used for fast VM-initializations. :)
   - [x] /etc/X11/xorg.conf.d/10-keyboard.conf
   - [x] /etc/pacman.d/hooks/
     - [x] pinentry.hook
+    - [x] paccache.hook
 - [x] automated linking
   - [x] dotextract.sh
   - [x] dots.config

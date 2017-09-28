@@ -23,6 +23,9 @@ Plugin 'tpope/vim-fugitive'
 " CTRL-P
 Plugin 'kien/ctrlp.vim'
 
+" Unicode
+Plugin 'chrisbra/unicode.vim'
+
 " Systemd-syntax
 Plugin 'Matt-Deacalion/vim-systemd-syntax'
 
@@ -74,17 +77,36 @@ set ttimeoutlen=50
 set laststatus=2
 set wildmenu        " visual command-completion (filenames)
 set showcmd         " displays current key-command (bottom-right)
+
+set splitbelow      " set new horizontal splits below (instead of above)
+set splitright      " set new vertical splits right (instead of left)
+
+" compatibility with older versions
+set nocompatible
+set autoindent
+
 " }}}
 
 " visual appearence {{{
+
+" cursor
+" http://stackoverflow.com/questions/34251566
+" http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 "set fillchars+=vert:│
 "hi VertSplit cterm=NONE ctermbg=NONE
 hi VertSplit cterm=NONE ctermbg=8 ctermfg=8
 hi Folded cterm=NONE ctermbg=NONE
 
 set cursorline
-"hi CursorLine cterm=NONE ctermbg=black ctermfg=NONE
-hi CursorLine cterm=NONE ctermbg=black
+autocmd InsertLeave * set cursorline
+autocmd InsertEnter * set nocursorline
+hi CursorLine cterm=NONE ctermbg=black ctermfg=NONE
+hi CursorColumn cterm=NONE ctermbg=black ctermfg=NONE
+"hi CursorLine cterm=NONE ctermbg=black
 hi CursorLineNr ctermbg=black
 " }}}
 
@@ -109,6 +131,17 @@ nmap <C-Down> <C-e>
 nnoremap j gj
 nnoremap k gk
 
+" -- select tab (https://stackoverflow.com/questions/2005214/
+nnoremap <M-1> 1gt
+nnoremap <M-2> 2gt
+nnoremap <M-3> 3gt
+nnoremap <M-4> 4gt
+nnoremap <M-5> 5gt
+nnoremap <M-6> 6gt
+nnoremap <M-7> 7gt
+nnoremap <M-8> 8gt
+nnoremap <M-9> 9gt
+
 " -- toggle search-highlighting
 nnoremap <silent> <Space> :set hlsearch! hlsearch?<CR>
 
@@ -117,8 +150,14 @@ nmap <A-Tab> :tabnext<CR>
 
 " -- xclip in selection-mode
 " TODO not perfect yet
-vnoremap <C-c> :w !xclip -i<CR><CR>
-vnoremap <C-v> :r !xclip -o<CR><CR>
+" https://github.com/erickzanardo/vim-xclip
+function! s:XClip() range
+  echo system('sed -n '.a:firstline.','.a:lastline.'p '.expand('%').' | xclip -selection clipboard')
+endfunction
+command! -nargs=* -range=% XClip <line1>,<line2>call s:XClip()
+"vnoremap <C-c> :w !xclip -i<CR><CR>
+"vnoremap <C-v> :r !xclip -o<CR><CR>
+
 " }}}
 
 " plugin-specific settings {{{

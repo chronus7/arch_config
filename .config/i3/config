@@ -85,12 +85,13 @@ bindsym $mod+p focus parent
 bindsym $mod+o focus child
 
 # windows
-new_window 1pixel
+new_window pixel 1
 new_float normal
 
 #assign [class="Chromium"] $w2
 #assign [class="Vlc"] $w5
 #assign [class="MuPDF"] $w5
+#assign [class="ffplay"] $w6
 for_window [class="MuPDF"] border pixel 3
 #for_window [class="Firefox"] floating enable
 for_window [class="qutebrowser"] floating enable
@@ -115,21 +116,10 @@ set $w4 "3: edu "
 set $w5 "4: cnt "
 set $w6 "5: med "
 set $w7 "6: ... "
-set $w8 "7: ..: "
-set $w9 "8: .:. "
+set $w8 "7: .:. "
+set $w9 "8: :.: "
 set $w0 "9: log "
 set $wscr "100: tmp "
-# set $w1 "0:[ t ]"
-# set $w2 "1:[ w ]"
-# set $w3 "2:[ d ]"
-# set $w4 "3:[ d ]"
-# set $w5 "4:[ m ]"
-# set $w6 "5:[ . ]"
-# set $w7 "6:[ : ]"
-# set $w8 "7:[ , ]"
-# set $w9 "8:[ ; ]"
-# set $w0 "9:[ ~ ]"
-# set $wscr "100:[ - ]"
 
 # switch to workspace
 bindsym $mod+1 workspace $w1
@@ -143,6 +133,18 @@ bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace $w0
 bindsym $mod+minus workspace $wscr
+
+# additional workspaces
+bindsym $mod+Mod1+1 workspace "51: α "
+bindsym $mod+Mod1+2 workspace "52: β "
+bindsym $mod+Mod1+3 workspace "53: γ "
+bindsym $mod+Mod1+4 workspace "54: δ "
+bindsym $mod+Mod1+5 workspace "55: ε "
+bindsym $mod+Mod1+6 workspace "56: ζ "
+bindsym $mod+Mod1+7 workspace "57: η "
+bindsym $mod+Mod1+8 workspace "58: θ "
+bindsym $mod+Mod1+9 workspace "59: ι "
+bindsym $mod+Mod1+0 workspace "60: κ "
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
@@ -254,13 +256,16 @@ bar {
 
 # DMenu
 bindsym $mod+d exec dmenu_run -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"
-bindsym $mod+Shift+d exec eval `cat ~/.scripts/utils/runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal"`
+bindsym $mod+Shift+d exec $(cat ~/.scripts/utils/runnables | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVu Sans Mono-8:normal")
 
 # Dunst (notification server)
-bindsym $mod+Mod1+d exec eval `echo -e 'killall -SIGUSR1 dunst # pause\nkillall -SIGUSR2 dunst # resume' | dmenu -i -l 2 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" -fn "DejaVu Sans Mono-8:normal"`
+bindsym $mod+Mod1+d exec echo -e 'pause\nresume' | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "dunst:" -fn "DejaVu Sans Mono-8:normal" | sed -e 's/pause/killall -SIGUSR1 dunst/' -e 's/resume/killall -SIGUSR2 dunst/' | xargs -I% sh -c "%"
 
-# Complex commands
-bindsym $mod+c exec eval $(cat ~/scripts/.complex | dmenu -i -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -l 6 -p "command:" -h 18 -fn "DejaVu Sans Mono-8:normal")
+# Next ecal-entry
+bindsym $mod+backslash exec ~/coding/python/projects/event_calendar/cal_notify.py
+
+# Current weather
+bindsym $mod+Shift+backslash exec ~/.scripts/utils/wttr_notification
 
 # Dynamic workspaces
 bindsym $mod+z exec i3-input -F 'workspace "%s"' -P 'Workspace: '
@@ -270,18 +275,38 @@ bindsym $mod+Shift+z exec ~/.scripts/utils/workspaces | dmenu -i -h 18 -nb "#000
 bindsym $mod+m exec ~/.scripts/utils/screens -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -fn "DejaVuSansMono-8:normal"
 
 # Backlight
-bindsym $mod+b exec echo -e "15\n25\n50\n75\n100" | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "xbacklight =" -fn "DejaVu Sans Mono-8:normal" | xbacklight =$(cat)
+bindsym $mod+b exec echo -e "15\n25\n50\n75\n100" | dmenu -i -h 18 -nb "#000" -sf "#000" -nf "$lgreen" -sb "$lgreen" -p "xbacklight =" -fn "DejaVu Sans Mono-8:normal" | backlight =$(cat)
 
 # Screenlock
-bindsym $mod+x exec ~/.scripts/lock & sleep .5 && systemctl suspend -i
+bindsym $mod+x exec lock & sleep .5 && systemctl suspend -i
 
 # Meta-Keys
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 -time 25
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 -time 25
+bindsym XF86MonBrightnessUp exec backlight +5 #-time 25
+bindsym XF86MonBrightnessDown exec backlight -5 #-time 25
 
 bindsym XF86AudioRaiseVolume exec amixer sset Master '5%+'
 bindsym XF86AudioLowerVolume exec amixer sset Master '5%-'
 bindsym XF86AudioMute exec amixer sset Master toggle
 
+# MPC
+bindsym XF86Tools exec mpc toggle       # play/pause
+bindsym $mod+semicolon exec mpc toggle  # play/pause
+bindsym $mod+apostrophe exec mpc stop   # stop
+bindsym Shift+F2 exec mpc volume -5     # vol -
+bindsym Shift+F3 exec mpc volume +5     # vol +
+bindsym $mod+comma exec mpc prev        # previous
+bindsym $mod+period exec mpc next       # next
+
 # Toggle Touchpad (and only the touchpad, i.e. Thinkpad-keys still work)
-bindsym XF86Search exec synclient -l | grep TouchpadOff | awk '{ print $NF }' | xargs test 0 -eq && synclient TouchpadOff=1 || synclient TouchpadOff=0
+# using synaptics:
+#bindsym XF86Search exec synclient -l | grep TouchpadOff | awk '{ print $NF }' | xargs test 0 -eq && synclient TouchpadOff=1 || synclient TouchpadOff=0
+# using libinput:
+# - xinput list --id-only <dev>
+# - xinput list-props <id> | awk '/Device Enabled/{ print $NF }'
+# - xinput enable|disable <id>
+bindsym XF86Search exec toggle_touchpad
+
+# Set Caps_Lock to Escape
+bindsym XF86LaunchA exec xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+# Reset Caps_Lock
+bindsym XF86Explorer exec xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'

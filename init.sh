@@ -121,6 +121,7 @@ for i in "${MOUNTS}"; do
 done
 
 info Installing base.
+pacman -Syy
 # TODO make /mnt variable
 pacstrap /mnt $PACSTRAP
 
