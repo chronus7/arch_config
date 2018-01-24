@@ -12,7 +12,7 @@ alias sudo='sudo '                  # allow aliases in sudo
 alias fuck='sudo $(history -p \!\!)'
 alias _='$(history -p \!:0)'        # btw. $_ are the last args
 alias rcp='rsync --recursive -P'    # recursive copy
-alias wgit='watch --color -n5 "git status; python -c \"print(\\\"-\\\"*int(\\\"$(stty size)\\\".split()[1]))\"; git ls --all --date-order"'
+alias wgit='watch --color -n5 "git -c color.ui=always status; python -c \"print(\\\"-\\\"*int(\\\"$(stty size)\\\".split()[1]))\"; git -c color.ui=always ls --all --date-order"'
 alias gitst='diff -y <(find ~ -type d -name .git -execdir git st {} +) <(find ~ -type d -name .git)'
 function gitlog() { for i in "$@"; do
     [ -d "$i" ] || continue
@@ -31,7 +31,7 @@ alias vrc='vim ~/.vimrc'
 
 # -- system --
 alias aur='pacaur'
-alias runs='ps -ef | grep -v grep | grep'
+alias runs='ps -ef | grep -v grep | grep -i'
 alias update='sudo pacman -Syu && pacaur -Syua'
 alias poweroff='[ -z "$(ps -ef | grep -v grep | grep qutebrowser)" ] && poweroff || echo -e "\033[31;1mQutebrowser still running.\033[m"'
 alias reboot='[ -z "$(ps -ef | grep -v grep | grep qutebrowser)" ] && reboot || echo -e "\033[31;1mQutebrowser still running.\033[m"'
@@ -69,6 +69,6 @@ function fstr() { find . -type f -exec grep -n --color=always -E "$1" {} +; }
 function pdfgrep() { for i in ${@:3}; do pdftotext "$i" - | awk "BEGIN{page=1}//{page+=1}/${1}/{ printf \"\033[33m%s\033[m[\033[32m%3d\033[m] %s\n\", \"$i\", page, \$0 }" | grep -i "${1}" --color; done; }
 
 # -- highlighting --
-function hless() { [[ -n "$2" ]] && option="-S $2"; highlight -O ANSI $option "$1" | less -R; }
-function hcat() { [[ -n "$2" ]] && option="-S $2"; highlight -O ANSI $option "$1"; }
+function hless() { pygmentize -g "$1" | less -R; }
+alias hcat='pygmentize -g'
 function md() { pandoc -s -f markdown -t man "$*" | man -l -; }

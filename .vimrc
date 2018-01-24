@@ -33,7 +33,18 @@ Plugin 'Matt-Deacalion/vim-systemd-syntax'
 Plugin 'bbcode'
 
 " Python-mode
-Plugin 'klen/python-mode'
+" TODO need to change this one. it slows down way too much
+"      YCM?
+"Plugin 'klen/python-mode'
+
+" Indent Python
+Plugin 'vim-scripts/indentpython.vim'
+
+" Python Flake, PEP8 and McCabe check
+Plugin 'nvie/vim-flake8'
+
+" Simple Fold
+"Plugin 'tmhedberg/SimpylFold'
 
 " Haskell-mode
 Plugin 'lukerandall/haskellmode-vim'
@@ -42,7 +53,7 @@ Plugin 'lukerandall/haskellmode-vim'
 Plugin 'vim-scripts/c.vim'
 
 " vim-latex #replaced by LaTeX-Box
-"Plugin 'lervag/vim-latex'
+" Plugin 'lervag/vim-latex'
 
 " LaTeX-Box
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -134,6 +145,12 @@ nmap <C-Down> <C-e>
 nnoremap j gj
 nnoremap k gk
 
+" -- movement through splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " -- select tab (https://stackoverflow.com/questions/2005214/
 nnoremap <M-1> 1gt
 nnoremap <M-2> 2gt
@@ -160,6 +177,19 @@ endfunction
 command! -nargs=* -range=% XClip <line1>,<line2>call s:XClip()
 "vnoremap <C-c> :w !xclip -i<CR><CR>
 "vnoremap <C-v> :r !xclip -o<CR><CR>
+
+" -- selection-search
+"  (http://vim.wikia.com/wiki/Search_for_visually_selected_text)
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " }}}
 

@@ -4,8 +4,8 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-let g:build_dir = 'output'
-let g:LatexBox_build_dir = 'output'
+let g:build_dir = 'tex_output'
+let g:LatexBox_build_dir = 'tex_output'
 let g:LatexBox_latexmk_options = '-new-viewer-'
 let g:LatexBox_latexmk_preview_continuously = 1
 let g:LatexBox_quickfix = 2

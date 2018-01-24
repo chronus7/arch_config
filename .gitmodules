@@ -56,9 +56,19 @@
 [submodule "bbcode"]
     path = ".vim/bundle/bbcode"
     url = "https://github.com/vim-scripts/bbcode.git"
+
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
+
 [submodule ".vim/bundle/unicode.vim"]
 	path = .vim/bundle/unicode.vim
 	url = https://github.com/chrisbra/unicode.vim
+
+[submodule ".vim/bundle/indentpython.vim"]
+    path = ".vim/bundle/indentpython.vim"
+    url = https://github.com/vim-scripts/indentpython.vim.git
+
+[submodule ".vim/bundle/vim-flake8"]
+    path = ".vim/bundle/vim-flake8"
+    url = https://github.com/nvie/vim-flake8.git
